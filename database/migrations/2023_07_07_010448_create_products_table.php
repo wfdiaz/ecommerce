@@ -21,7 +21,7 @@ class CreateProductsTable extends Migration
             $table->text('description')->nullable();
             $table->float('price')->nullable();
             $table->unsignedBigInteger('subcategory_id');
-            $table->foreign('subcategory_id')->references('id')->on('sub_categories');
+            $table->foreign('subcategory_id')->references('id')->on('subcategories');
 
             $table->unsignedBigInteger('brand_id'); 
             $table->foreign('brand_id')->references('id')->on('brands');

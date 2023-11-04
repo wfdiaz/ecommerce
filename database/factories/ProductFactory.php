@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\SubCategory;
+use App\Models\Subcategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -16,7 +16,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         $name = $this->faker->sentence(2);
-        $subcategory = SubCategory::all()->random();
+        $subcategory = Subcategory::all()->random();
         $category = $subcategory->category;
 
         $brand = $category->brands->random();

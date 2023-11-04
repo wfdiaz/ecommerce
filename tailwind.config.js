@@ -18,10 +18,15 @@ module.exports = {
             },
 
             colors: {
-                trueGray: colors.trueGray,
                 orange: colors.orange,
                 greenLime: colors.lime,
-            }
+                pantone: {
+                    1255: '#BC831A',
+                    1245: '#D1A32C',
+                    7404: '#F9D73F',
+                    393: '#F9E675',
+                }
+            }       
         },
     },
 

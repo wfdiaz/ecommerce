@@ -9,6 +9,9 @@
         case 'white':
             $col = '#ffffff';
             break;
+        case 'black':
+        $col = '#00000';
+        break;
     
         default:
             $col = '#ede8e9';

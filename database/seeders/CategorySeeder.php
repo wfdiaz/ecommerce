@@ -23,22 +23,22 @@ class CategorySeeder extends Seeder
             'slug' => Str::slug('Celulares y tablets'),
             'icon' => '<i class="fa-solid fa-mobile-screen-button"></i>',
             ],
-            $categories = [
+            [
                 'name' => 'TV, Audio y video',
                 'slug' => Str::slug('TV, Audio y video'),
                 'icon' => '<i class="fa-solid fa-tv"></i>'
             ],
-            $categories = [
+            [
                 'name' => 'Consola y videojuegos',
                 'slug' => Str::slug('Consola y videojuegos'),
                 'icon' => '<i class="fa-solid fa-gamepad"></i>'
             ],
-            $categories = [
+            [
                 'name' => 'Computacion',
                 'slug' => Str::slug('Computacion'),
                 'icon' => '<i class="fa-solid fa-laptop"></i>'
             ],
-            $categories = [
+            [
                 'name' => 'Moda',
                 'slug' => Str::slug('Moda'),
                 'icon' => '<i class="fa-solid fa-shirt"></i>'

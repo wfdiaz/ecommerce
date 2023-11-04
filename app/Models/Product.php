@@ -25,7 +25,7 @@ class Product extends Model
     }
 
     public function subcategory(){
-        return $this->belongsTo(subcategory::class);
+        return $this->belongsTo(Subcategory::class);
     }
 
     // Relacion muchos a muchos
@@ -35,6 +35,10 @@ class Product extends Model
 
     // relacion uno a muchos polimorfica
     public function images(){
-        return $this->morphToMany(Image::class, 'imageable');
+        return $this->morphMany(Image::class, 'imageable');
+    }
+
+    public function getRouteKeyName() {
+        return 'slug';
     }
 }
