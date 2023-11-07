@@ -108,6 +108,7 @@
                 <div class="container bg-pantone-7404 bg-opacity-50 pt-2 py-2 mb-2">
                     @livewire('search')
                 </div>
+
                 @foreach($categories as $category)
                     <li class="text-black hover:bg-pantone-1255 hover:text-white">
                         <a href="{{ route('categories.show', $category) }}" class="py-2 px-4 text-sm flex items-center">
