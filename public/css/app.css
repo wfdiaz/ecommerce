@@ -1128,6 +1128,9 @@ select {
 .order-last {
   order: 9999;
 }
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
 .col-span-3 {
   grid-column: span 3 / span 3;
 }
@@ -1205,6 +1208,9 @@ select {
 }
 .ml-6 {
   margin-left: 1.5rem;
+}
+.ml-auto {
+  margin-left: auto;
 }
 .mr-1 {
   margin-right: 0.25rem;
@@ -1468,6 +1474,9 @@ select {
 .grid-cols-4 {
   grid-template-columns: repeat(4, minmax(0, 1fr));
 }
+.grid-cols-5 {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
 .grid-cols-6 {
   grid-template-columns: repeat(6, minmax(0, 1fr));
 }
@@ -1718,6 +1727,10 @@ select {
   padding-left: 0.25rem;
   padding-right: 0.25rem;
 }
+.px-16 {
+  padding-left: 4rem;
+  padding-right: 4rem;
+}
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -1778,6 +1791,9 @@ select {
 }
 .pb-4 {
   padding-bottom: 1rem;
+}
+.pb-6 {
+  padding-bottom: 1.5rem;
 }
 .pl-3 {
   padding-left: 0.75rem;

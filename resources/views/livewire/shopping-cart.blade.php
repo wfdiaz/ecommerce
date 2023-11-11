@@ -62,7 +62,8 @@
                 </tbody>
             </table>
 
-            <a wire:click='destroy' class="text-sm cursor-pointer hover:underline inline-block mt-6">
+            <a wire:click='destroy' class="text-sm cursor-pointer hover:underline inli.
+            04ne-block mt-6">
                 <i class="fas fa-trash"></i> Eliminar Carrito de compras
             </a>
         @else
@@ -84,7 +85,7 @@
                     COP $ {{ Cart::subtotal() }}
                 </div>
                 <div>
-                    <x-button-enlace href="/" class="px-16 bg-pantone-393 hover:bg-pantone-1245 active:bg-pantone-1245 focus:border-pantone-1245 focus:ring-pantone-393">
+                    <x-button-enlace href="{{ route('orders.create') }}" class="px-16 bg-pantone-393 hover:bg-pantone-1245 active:bg-pantone-1245 focus:border-pantone-1245 focus:ring-pantone-393">
                         Continuar
                     </x-button-enlace>
                 </div>
