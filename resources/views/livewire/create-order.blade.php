@@ -16,7 +16,6 @@
 
         <div x-data="{envio_type: @entangle('envio_type')}">
             <p class="mt-6 mb-3 text-lg font-semibold"> Envíos </p>
-
             <label class="bg-white rounded-lg shadow px-6 py-4 flex items-center cursor-pointer mb-4">
                 <input x-model="envio_type" type='radio' name='envio_type' value="1">
                 <span class="ml-2 "> Recoger en tienda </span>
@@ -91,12 +90,11 @@
                                         <p class="capitalize mr-2"> {{ __($item->options['color']) }} </p>
                                     </p>
                                 @endisset
-    
                                 @isset($item->options['size'])
                                     <p> {{ $item->options['size'] }} </p>
                                 @endisset
                             </div>
-    
+
                             <p> COP $ {{ $item->price }}</p>
                         </article>
                     </li>
@@ -119,12 +117,12 @@
                     Gratis
                 @else
                     {{ $shipping_cost }} COP
-                @endif    
+                @endif
                 </span> </p>
 
                 <hr class="mb-3 mt-4">
 
-                <p class="flex justify-between items-center font-semibold">  <span class="text-lg"> TOTAL </span> {{  number_format(floatval(str_replace(',','',Cart::subtotal())) + $this->shipping_cost, 0, ',', '.' ) }} COP </p>
+                <p class="flex justify-between items-center font-semibold"> <span class="text-lg"> TOTAL </span> {{ number_format(floatval(str_replace(',','',Cart::subtotal())) + $this->shipping_cost, 0, ',', '.' ) }} COP </p>
             </div>
         </div>
     </div>

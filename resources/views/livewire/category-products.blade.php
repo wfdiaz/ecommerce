@@ -7,7 +7,7 @@
                     <li class="bg-white rounded-lg shadow {{ $loop->last ? '' : 'sm:mr-4' }}">
                         <article>
                             <figure>
-                                <img class="h-48 w-full object-cover object-center                            " src="{{ Storage::url($product->images->first()->url) }}" alt='image'>
+                                <img class="h-48 w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}" alt='image'>
                             </figure>
                             <div class="py-4 px-6">
                                 <h1 class="test-lg font-semibold">
@@ -21,7 +21,7 @@
                     </li>
                 @endforeach
             </ul>
-        
+
             <button aria-label="Previous" class="glider-prev">«</button>
             <button aria-label="Next" class="glider-next">»</button>
             <div role="tablist" class="dots"></div>

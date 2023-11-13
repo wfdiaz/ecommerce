@@ -1,5 +1,4 @@
 <div>
-
     <a href="" class="py-2 px-4 text-sm flex items-center">
         <span class="flex justify-center w-9 px-2">
             <i class="fa-solid fa-cart-shopping text-black"></i>

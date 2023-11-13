@@ -47,7 +47,7 @@
                                         
                                     @elseif($item->options->color)
                                         @livewire('update-cart-item-color', ['rowId' => $item->rowId], key($item->rowId))
-        
+
                                     @else
                                         @livewire('update-cart-item', ['rowId' => $item->rowId], key($item->rowId))
                                     @endif
@@ -62,8 +62,7 @@
                 </tbody>
             </table>
 
-            <a wire:click='destroy' class="text-sm cursor-pointer hover:underline inli.
-            04ne-block mt-6">
+            <a wire:click='destroy' class="text-sm cursor-pointer hover:underline inline-block mt-6">
                 <i class="fas fa-trash"></i> Eliminar Carrito de compras
             </a>
         @else
@@ -81,8 +80,7 @@
         <div class="bg-white rounded-lg shadow-lg px-6 py-4 mt-6">
             <div class="flex justify-between items-center">
                 <div>
-                    <p class="text-lg font-bold"> TOTAL: </p>
-                    COP $ {{ Cart::subtotal() }}
+                    <p class="text-lg font-bold"> TOTAL: </p> COP $ {{ Cart::subtotal() }}
                 </div>
                 <div>
                     <x-button-enlace href="{{ route('orders.create') }}" class="px-16 bg-pantone-393 hover:bg-pantone-1245 active:bg-pantone-1245 focus:border-pantone-1245 focus:ring-pantone-393">

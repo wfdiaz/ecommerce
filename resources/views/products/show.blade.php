@@ -15,7 +15,6 @@
 
             <div>
                 <h1 class="text-xl font-bold"> {{ $product->name }} </h1>
-
                 <div class="flex">
                     <p> Marca: <a class="underline capitalize hover:text-pantone-393" href=""> {{ $product->brand->name }}</a></p>
                     <p class="mx-6"> 5 <i class="fas fa-star text-sm text-yellow-400"></i> </p>
@@ -48,6 +47,7 @@
             </div>
         </div>
     </div>
+
     @push('script')
         <script>
             $(document).ready(function() {

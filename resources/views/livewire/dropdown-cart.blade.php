@@ -45,22 +45,12 @@
 
             @if (Cart::count())
                 <div class="px-2 py-3">
-                    <p class="text-lg mt-2 mb-3"> <span class="font-bold"> Total : </span> COP $ {{ Cart::subtotal() }}
-                    </p>
-
+                    <p class="text-lg mt-2 mb-3"> <span class="font-bold"> Total : </span> COP $ {{ Cart::subtotal() }} </p>
                     <x-button-enlace href="{{ route('cart') }}" class="w-full bg-pantone-393 hover:bg-pantone-1245 active:bg-pantone-1245 focus:border-pantone-1245 focus:ring-pantone-393">
                         Ir al carrito de compras
                     </x-button-enlace>
                 </div>
             @endif
-
-            {{-- <x-jet-dropdown-link href="{{ route('login') }}">
-                {{ __('Login') }}
-            </x-jet-dropdown-link>
-
-            <x-jet-dropdown-link href="{{ route('register') }}">
-                {{ __('Register') }}
-            </x-jet-dropdown-link> --}}
         </x-slot>
     </x-jet-dropdown>
 </div>

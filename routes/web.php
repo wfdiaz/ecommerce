@@ -25,5 +25,10 @@ Route::get('search', SearchController::class)->name('search');
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('cart', ShoppingCart::class)->name('cart');
-Route::get('orders/create', CreateOrder::class)->middleware('auth')->name('orders.create');
-Route::get('orders/{order}/payment', [OrderController::class, 'payment'])->middleware('auth')->name('orders.payment');
+Route::middleware(['auth'])->group(function() {
+    
+    Route::get('orders/create', CreateOrder::class)->name('orders.create');
+    Route::get('orders/{order}', [OrderController::class, 'show'])->name('orders.show');
+    Route::get('orders', [OrderController::class, 'index'])->name('orders.index');
+    Route::get('orders/{order}/payment', [OrderController::class, 'payment'])->name('orders.payment');
+});

@@ -21,7 +21,6 @@
                     </li>
                 @endforeach
             </ul>
-
             <h1 class="font-semibold text-center mb-2"> Marcas </h1>
             <ul class="divide-y divide-gray-200">
                 @foreach ($category->brands as $brand)
@@ -63,8 +62,6 @@
                     @endforeach
                 </ul>
             @endif
-
-
             <div class="mt-4">
                 {{ $products->links() }}
             </div>

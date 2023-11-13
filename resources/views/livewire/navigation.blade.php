@@ -65,6 +65,10 @@
                         <x-jet-dropdown-link href="{{ route('register') }}">
                             {{ __('Register') }}
                         </x-jet-dropdown-link>
+
+                        <x-jet-dropdown-link href="{{ route('orders.index') }}">
+                            Mis ordenes
+                        </x-jet-dropdown-link>
                     </x-slot>
                 </x-jet-dropdown>
             @endauth
