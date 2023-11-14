@@ -18,14 +18,14 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
             $hora = now()->subMinute(30);
-            $orders = Order::where('status', 1)->whereTime('created_at', '<=', $hora)->get();
+            $orders = Order::where('status', 'PENDING')->whereTime('created_at', '<=', $hora)->get();
             foreach ($orders as $order) {
                 $items = json_decode($order->content);
                 foreach ($items as $item) {
                     increase($item);
                 }
 
-                $order->status = 5;
+                $order->status = 'CANCELED';
                 $order->save();
             }
         })->everyMinute();
