@@ -2,7 +2,7 @@
     <div class="bg-white rounded-lg shadow-lg mb-6">
         <div class="px-6 py-2 flex justify-between items-center">
             <h1 class="font-semibold text-black uppercase"> {{ $category->name }} </h1>
-            <div class="grid grid-cols-2 border-gray-200 divide-gray-200 text-gray-500">
+            <div class="hidden md:block grid grid-cols-2 border-gray-200 divide-gray-200 text-gray-500">
                 <i class="fas fa-border-all p-3 cursor-pointer {{ $view == 'grid' ? 'text-pantone-1245' : '' }}" wire:click="$set('view', 'grid')"></i>
                 <i class="fas fa-th-list p-3 cursor-pointer {{ $view == 'list' ? 'text-pantone-1245' : '' }}" wire:click="$set('view', 'list')"></i>
             </div>
@@ -15,7 +15,7 @@
             <ul class="divide-y divide-gray-200">
                 @foreach ($category->subcategories as $subcategory)
                     <li class="py-2 text-sm">
-                        <a wire:click="$set('subcategoria', '{{ $subcategory->name }}')" class="cursor-pointer hover:text-pantone-1245 capitalize {{ $subcategoria == $subcategory->name ? 'text-pantone-1245 font-semibold' : ''}}">
+                        <a wire:click="$set('subcategoria', '{{ $subcategory->slug }}')" class="cursor-pointer hover:text-pantone-1245 capitalize {{ $subcategoria == $subcategory->slug ? 'text-pantone-1245 font-semibold' : ''}}">
                             {{ $subcategory->name }}
                         </a>
                     </li>
@@ -37,7 +37,7 @@
         <div class="md:col-span-2 lg:col-span-4">
             @if ($view == 'grid')
                 <ul class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <li class="bg-white rounded-lg shadow">
                             <article>
                                 <figure>
@@ -53,13 +53,25 @@
                                 </div>
                             </article>
                         </li>
-                    @endforeach
+                    @empty
+                        <li class="md:col-span-2 lg:col-span-4">
+                            <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                                <strong class="font-bold">Upss!</strong>
+                                <span class="block sm:inline">No existe ningún producto con ese filtro.</span>
+                            </div>
+                        </li>
+                    @endforelse
                 </ul>
             @else
                 <ul>
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <x-product-list :product="$product"/>
-                    @endforeach
+                    @empty
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                            <strong class="font-bold">Upss!</strong>
+                            <span class="block sm:inline">No existe ningún producto con ese filtro.</span>
+                        </div>
+                    @endforelse
                 </ul>
             @endif
             <div class="mt-4">

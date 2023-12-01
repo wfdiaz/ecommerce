@@ -1,17 +1,8 @@
-<x-app-layout>
+<x-admin-layout>
     <div class="container py-12">
-        <section class="grid lg:grid-cols-5 gap-6 text-white">
-            <a href="{{ route('orders.index') . "?status=PENDING" }}" class=" bg-pink-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
-                <p class="text-center text-2xl">
-                    {{$pendiente}}
-                </p>
-                <p class="uppercase text-center"> Pendiente </p>
-                <p class="text-center text-2xl mt-2">
-                    <i class="fas fa-business-time"></i>
-                </p>
-            </a>
+        <section class="grid md:grid-cols-4 gap-6 text-white">
 
-            <a href="{{ route('orders.index') . "?status=RECEIVED" }}" class="bg-gray-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
+            <a href="{{ route('admin.orders.index') . "?status=RECEIVED" }}" class="bg-gray-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{$recibido}}
                 </p>
@@ -21,7 +12,7 @@
                 </p>
             </a>
 
-            <a href="{{ route('orders.index') . "?status=SENT" }}" class="bg-yellow-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
+            <a href="{{ route('admin.orders.index') . "?status=SENT" }}" class="bg-yellow-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{$enviado}}
                 </p>
@@ -31,7 +22,7 @@
                 </p>
             </a>
 
-            <a href="{{ route('orders.index') . "?status=DELIVERED" }}" class=" bg-green-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
+            <a href="{{ route('admin.orders.index') . "?status=DELIVERED" }}" class=" bg-green-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{$entregado}}
                 </p>
@@ -41,7 +32,7 @@
                 </p>
             </a>
 
-            <a href="{{ route('orders.index') . "?status=CANCELED" }}" class="bg-red-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
+            <a href="{{ route('admin.orders.index') . "?status=CANCELED" }}" class="bg-red-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
                     {{$cancelado}}
                 </p>
@@ -61,7 +52,7 @@
                 <ul>
                     @foreach ($orders as $order)
                         <li>
-                            <a href="{{route('orders.show', $order)}}" class="flex items-center py-2 px-4 hover:bg-gray-100">
+                            <a href="{{route('admin.orders.show', $order)}}" class="flex items-center py-2 px-4 hover:bg-gray-100">
                                 <span class="w-12 text-center">
                                     @switch($order->status)
                                         @case('PENDING')
@@ -80,7 +71,6 @@
                                             <i class="fas fa-times-circle text-red-500 opacity-50"></i>
                                             @break
                                         @default
-                                            
                                     @endswitch
                                 </span>
 
@@ -120,5 +110,6 @@
             </span>
         </div>
         @endif
+
     </div>
-</x-app-layout>
+</x-admin-layout>
