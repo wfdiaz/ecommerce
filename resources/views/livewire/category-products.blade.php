@@ -7,7 +7,12 @@
                     <li class="bg-white rounded-lg shadow {{ $loop->last ? '' : 'sm:mr-4' }}">
                         <article>
                             <figure>
-                                <img class="h-48 w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}" alt='image'>
+                                {{-- @if ($product->images->count()) --}}
+                                    <img class="h-48 w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}" alt='image'>
+                                {{-- @else
+                                    <img class="h-48 w-full object-cover object-center" alt='image'>
+                                @endif --}}
+                             
                             </figure>
                             <div class="py-4 px-6">
                                 <h1 class="test-lg font-semibold">

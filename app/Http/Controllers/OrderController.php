@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class OrderController extends Controller
 {
@@ -37,5 +38,23 @@ class OrderController extends Controller
         $cancelado = Order::where('status', 'CANCELED')->where('user_id', auth()->user()->id)->count();
 
         return view('orders.index', compact('orders', 'pendiente', 'recibido', 'enviado', 'entregado', 'cancelado'));
+    }
+
+    public function pay(Order $order, Request $request){
+
+        $payment_id = $request->get('payment_id');
+
+        $response = Http::get("https://api.mercadopago.com/v1/payments/$payment_id" . "?access_token=APP_USR-2703406764553486-111913-4895254bd5922043689aedb4d51d5adb-1556981132");
+        
+        $response = json_decode($response);
+
+        $status = $response->status;
+
+        if($status == "approved"){
+            $order->status = 2;
+            $order->save();
+        }
+
+        return redirect()->route('orders.show', $order); 
     }
 }

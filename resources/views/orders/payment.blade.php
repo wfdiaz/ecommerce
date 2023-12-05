@@ -1,4 +1,45 @@
 <x-app-layout>
+
+    @php
+        //SDK de Mercado pago
+        require base_path('vendor/autoload.php');
+        //Agrega credenciales
+        MercadoPago\SDK::setAccessToken(config('services.mercadopago.token'));
+
+        //crea un objeto de preferencia
+        $preference = new MercadoPago\Preference();
+
+        $shipments = new MercadoPago\Shipments();
+
+        $shipments->cost = $order->shipping_cost;
+        $shipments->mode = "not_specified";
+
+        $preference->shipments = $shipments;
+        //crea un item en la preferencia
+        // $item = new MercadoPago\Item();
+        // $item->title = 'Mi Producto';
+        // $item->quantity = 1;
+        // $item->unit_price = 75.56;
+        foreach ($items as $product) {
+            $item = new MercadoPago\Item();
+            $item->title = $product->name;
+            $item->quantity = $product->qty;
+            $item->unit_price = $product->price;
+
+            $products[] = $item;
+        }
+
+        $preference->back_urls = array(
+            'success' => route('orders.pay', $order),
+            'failure' => "https://www.tu-sitio/failure",
+            'pending' => "https://www.tu-sitio/pending"
+        );
+        $preference->auto_return = "approved"; 
+        // $preference->items = array($item);
+        $preference->items = $products;
+        $preference->save();
+    @endphp
+
     <div class="grid grid-cols-5 gap-6 container py-8">
         <div class="col-span-3">
             <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
@@ -15,6 +56,7 @@
                         @else
                             <p class="text-sm"> Los productos serán enviados a: </p>
                             <p class="text-sm"> {{ $order->address }}</p>
+                               
                             <p> {{ $order->departament->name }} - {{ $order->city->name }}</p>
                         @endif
                     </div>
@@ -76,10 +118,36 @@
                     <div>
                         <p class="font-semibold text-sm"> Subtotal: {{ number_format($order->total - $order->shipping_cost, 0, ',', '.') }} COP</p>
                         <p class="font-semibold text-sm"> Envio: {{ number_format($order->shipping_cost, 0, ',', '.') }} COP</p>
-                        <p class="font-semibold"> Total: {{ number_format($order->total, 0, ',', '.') }} COP</p>
+                        <p class="font-semibold"> 
+                            Total: {{ number_format($order->total, 0, ',', '.') }} COP
+                        </p>
+                        <div class="cho-container">
+
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script src="https://sdk.mercadopago.com/js/v2"></script>
+
+    <script>
+        //Agrega credenciales de SDK
+        const mp = new MercadoPago("{{ config('services.mercadopago.key') }}",{
+            locate: 'es-AR'
+        });
+
+        // Inicializa el checkout
+        mp.checkout({
+            preference:{
+                id: '{{ $preference->id }}'
+            },
+            render: {
+                container: '.cho-container',
+                label: 'Pagar',
+            }
+        });
+    </script>
+
 </x-app-layout>
