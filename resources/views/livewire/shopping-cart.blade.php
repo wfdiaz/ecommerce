@@ -112,9 +112,6 @@
 
     </x-table-responsive>
 
-    <!-- This example requires Tailwind CSS v2.0+ -->
-
-
 
     @if (Cart::count())
 
