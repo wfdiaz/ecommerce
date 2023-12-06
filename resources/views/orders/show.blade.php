@@ -55,7 +55,7 @@
                     @else
                         <p class="text-sm">Los productos Serán enviados a:</p>
                         <p class="text-sm">{{ $envio->address }}</p>
-                        <p>{{ $envio->department }} - {{ $envio->city }} - {{ $envio->district }}
+                        <p>{{ $envio->department }} - {{ $envio->city }}
                         </p>
                     @endif
 

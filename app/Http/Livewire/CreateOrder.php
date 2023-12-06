@@ -50,10 +50,22 @@ class CreateOrder extends Component
         $order->shipping_cost = $this->shipping_cost;
         $order->total = floatval(str_replace(',','',Cart::subtotal())) + $this->shipping_cost;
         $order->content = Cart::content();
+
+        if ($this->envio_type == 2) {
+            $order->shipping_cost = $this->shipping_cost;
+
+            $order->envio = json_encode([
+                'department' => Departament::find($this->departament_id)->name,
+                'city' => City::find($this->city_id)->name,
+                'address' => $this->address,
+                'references' => $this->reference
+            ]);
+        }
+
         $order->save();
 
         foreach(Cart::content() as $item) {
-
+            discount($item);
         }
 
         Cart::destroy();

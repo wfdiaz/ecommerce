@@ -55,9 +55,8 @@
                             <p class="text-sm"> calle</p>
                         @else
                             <p class="text-sm"> Los productos serán enviados a: </p>
-                            <p class="text-sm"> {{ $order->address }}</p>
-                               
-                            <p> {{ $order->departament->name }} - {{ $order->city->name }}</p>
+                            <p class="text-sm"> {{ $envio->address }}</p>
+                            <p> {{ $envio->department }} - {{ $envio->city }}</p>
                         @endif
                     </div>
                     <div>

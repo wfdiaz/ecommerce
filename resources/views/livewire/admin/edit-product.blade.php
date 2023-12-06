@@ -15,13 +15,13 @@
         <h1 class="text-3xl text-center font-semibold mb-8"> Complete esta información para crear un producto </h1>
 
         <div class="mb-4" wire:ignore>
-            {{-- <form action="{{ route('admin.products.files', $product) }}" method="POST" class="dropzone"
-                id="my-awesome-dropzone"></form> --}}
+            <form action="{{ route('admin.products.files', $product) }}" method="POST" class="dropzone"
+                id="my-awesome-dropzone"></form>
         </div>
 
-        {{-- @if ($product->images->count())
+        @if ($product->images->count())
             <section class="bg-white shadow-xl rounded-lg p-6 mb-4">
-                <h1 class="text-2xl text-center font-semibold mb-2">Imagenes del producto</h1>
+                <h1 class="text-2xl text-center font-semibold mb-2"> Imagenes del producto </h1>
                 <ul class="flex flex-wrap">
                     @foreach ($product->images as $image)
 
@@ -36,10 +36,10 @@
                     @endforeach
                 </ul>
             </section>
-        @endif --}}
+        @endif
 
 
-        {{-- @livewire('admin.status-product', ['product' => $product], key('status-product-' . $product->id)) --}}
+        @livewire('admin.status-product', ['product' => $product], key('status-product-' . $product->id))
 
         <div class="bg-white shadow-xl rounded-lg p-6">
             <div class="grid grid-cols-2 gap-6 mb-4">
@@ -151,23 +151,24 @@
             @endif
         @endif
     </div>
-    {{-- Dropzone.options.myAwesomeDropzone = {
-        headers: {
-            'X-CSRF-TOKEN': "{{ csrf_token() }}"
-        },
-        dictDefaultMessage: "Arrastre una imagen al recuadro",
-        acceptedFiles: 'image/*',
-        paramName: "file", // The name that will be used to transfer the file
-        maxFilesize: 2, // MB
-        complete: function(file) {
-            this.removeFile(file);
-        },
-        queuecomplete: function() {
-            Livewire.emit('refreshProduct');
-        } --}}
-    {{-- }; --}}
     @push('script')
         <script>
+            Dropzone.options.myAwesomeDropzone = {
+                headers: {
+                    'X-CSRF-TOKEN': "{{ csrf_token() }}"
+                },
+                dictDefaultMessage: "Arrastre una imagen al recuadro",
+                acceptedFiles: 'image/*',
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 2, // MB
+                complete: function(file) {
+                    this.removeFile(file);
+                },
+                queuecomplete: function() {
+                    Livewire.emit('refreshProduct');
+                }
+            };
+
             Livewire.on('deleteProduct', () => {
                 Swal.fire({
                     title: 'Are you sure?',
