@@ -26,8 +26,26 @@ module.exports = {
                     7404: '#F9D73F',
                     393: '#F9E675',
                 }
-            }       
+            },
+            spacing: {
+                '128': '32rem',
+            } 
         },
+
+        screens: {
+            'sm': '576px',
+            // => @media (min-width: 576px) { ... }
+      
+            'md': '960px',
+            // => @media (min-width: 960px) { ... }
+      
+            'lg': '1100px',
+            // => @media (min-width: 1440px) { ... }
+      
+            'xl': '1440px',
+            // => @media (min-width: 1440px) { ... }
+          },
+
     },
 
     plugins: [require('@tailwindcss/forms'), require('@tailwindcss/typography')],

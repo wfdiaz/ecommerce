@@ -1,5 +1,5 @@
 <x-admin-layout>
-    <div class="container py-12">
+    <div class="containerprop py-12">
         <section class="grid md:grid-cols-4 gap-6 text-white">
 
             <a href="{{ route('admin.orders.index') . "?status=RECEIVED" }}" class="bg-gray-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">

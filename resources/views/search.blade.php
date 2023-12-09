@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container py-8">
+    <div class="containerprop py-8">
         <ul>
             @forelse ($products as $product)
                 <x-product-list :product="$product"/>

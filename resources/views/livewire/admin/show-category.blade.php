@@ -1,4 +1,4 @@
-<div class="container py-12">
+<div class="containerprop py-12">
     
     {{-- Formulario crear categoría --}}
     <x-jet-form-section submit="save" class="mb-6">

@@ -8,7 +8,7 @@
                         <article>
                             <figure>
                                 {{-- @if ($product->images->count()) --}}
-                                    <img class="h-48 w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}" alt='image'>
+                                    <img class="h-full w-full object-cover object-center" src="{{ Storage::url($product->images->first()->url) }}" alt='image' style="aspect-ratio: 1/1;"   >
                                 {{-- @else
                                     <img class="h-48 w-full object-cover object-center" alt='image'>
                                 @endif --}}

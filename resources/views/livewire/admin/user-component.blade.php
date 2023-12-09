@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container py-12">
+    <div class="prop py-12">
         <x-table-responsive>
 
             <div class="px-6 py-4">

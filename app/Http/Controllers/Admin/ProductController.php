@@ -18,6 +18,6 @@ class ProductController extends Controller
 
         $product->images()->create([
             'url' => $url
-        ])
+        ]);
     }
 }

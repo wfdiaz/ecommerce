@@ -5,7 +5,7 @@
         </h2>
     </x-slot>
 
-    <div class="container py-12">
+    <div class="containerprop py-12">
         {{-- Agregar departamento --}}
         <x-jet-form-section submit="save" class="mb-6">
     

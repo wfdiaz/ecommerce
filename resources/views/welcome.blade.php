@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container py-8">
+    <div class="containerprop py-8">
         @foreach ($categories as $category)
             <section class="mb-6">
                 <div class="flex items-center mb-2">

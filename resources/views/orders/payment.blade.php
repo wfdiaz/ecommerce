@@ -40,7 +40,7 @@
         $preference->save();
     @endphp
 
-    <div class="grid grid-cols-5 gap-6 container py-8">
+    <div class="grid grid-cols-5 gap-6 containerprop py-8">
         <div class="col-span-3">
             <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6">
                 <p class="uppercase"> <span class="font-semibold"> Número de orden: </span> Orden-{{ $order->id }} </p>

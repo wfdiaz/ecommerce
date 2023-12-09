@@ -1,4 +1,4 @@
-@props(['size' => 35, 'color' => 'gray'])
+@props(['size' => 20, 'color' => 'gray'])
 
 @php
     switch ($color) {
@@ -9,6 +9,10 @@
         case 'white':
             $col = "#ffffff";
             break;
+
+        case 'black':
+            $col = "#000000";
+            break;
         
         default:
             $col = "#ede8e9";
@@ -16,7 +20,12 @@
     }
 @endphp
 
-<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="{{ $size }}" height="{{ $size }}" viewBox="0,0,256,256"
+<svg xmlns="http://www.w3.org/2000/svg"  width="{{ $size }}" height="{{ $size }}" x="0px" y="0px" viewBox="0 0 512 512"  style="fill:#000000;">>
+    <!--!Font Awesome Free 6.5.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.-->
+    <path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352a144 144 0 1 0 0-288 144 144 0 1 0 0 288z"/>
+</svg>
+
+{{-- <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" viewBox="0,0,256,256"
     style="fill:#000000;">
     <g fill="{{ $col }}" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter"
         stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none"
@@ -27,4 +36,4 @@
             </path>
         </g>
     </g>
-</svg>
+</svg> --}}

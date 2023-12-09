@@ -11,7 +11,7 @@
         </div>
     </x-slot>
 
-    <div class="container py-12">
+    <div class="containerprop py-12">
         <x-table-responsive>
             <div class="px-6 py-4">
                 <x-jet-input type="text"  wire:model="search"  class="w-full" placeholder="Ingrese el nombre del producto que quiere buscar" />

@@ -66,6 +66,7 @@
             function dropdown(){
                 return {
                     open: false,
+                    openserch: false,
                     show(){
                         if(this.open){
                             this.open = false;
@@ -77,6 +78,19 @@
                     },
                     close(){
                         this.open = false;
+                        document.getElementsByTagName('html')[0].style.overflow = 'auto';
+                    },
+                    showsearch(){
+                        if(this.openserch){
+                            this.openserch = false;
+                            document.getElementsByTagName('html')[0].style.overflow = 'auto';
+                        } else {
+                            this.openserch = true;
+                            document.getElementsByTagName('html')[0].style.overflow = 'hidden';
+                        }
+                    },
+                    closesearch(){
+                        this.openserch = false;
                         document.getElementsByTagName('html')[0].style.overflow = 'auto';
                     }
                 }

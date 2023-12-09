@@ -1,18 +1,35 @@
 <x-app-layout>
-    <div class="container py-8">
-        <div class="grid md:grid-cols-2 gap-4 md:gap-6">
-            <div>
-                <div class="flexslider">
+    <div class="containerprop py-8">
+        <div class="grid md:grid-cols-5 gap-4 md:gap-6">
+            <div class="md:col-span-3">
+                <div class="flexslider block md:hidden">
                     <ul class="slides">
                         @foreach ($product->images as $image)
                             <li data-thumb="{{ Storage::url($image->url) }}">
-                                <img src="{{ Storage::url($image->url) }}" />
+                                <img class="object-cover w-full h-full" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;"/>
                             </li>
                         @endforeach
                     </ul>
                 </div>
 
-                <div class="-mt-10">
+                <div class="hidden md:block">
+                    <div class="grid grid-cols-2 gap-0.5" >
+                        @foreach ($product->images as $key => $image)
+                            @if ($product->images->count() % 2 == 0)
+                                <img class="object-cover w-full h-full" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" />
+                            @else
+                                @if($key != $product->images->count() - 1) 
+                                    <img class="object-cover w-full h-full" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" />
+                                @else
+                                    <img class="object-cover w-full h-full col-span-2" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 2/1;" />
+
+                                @endif
+                            @endif
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="-mt-10 md:mt-2">
                     <h2 class="font-bold text-lg"> Descripción </h2>
                     {!! $product->description !!}
                 </div>
@@ -100,15 +117,19 @@
                 @endif
             </div>
 
-            <div>
-                <h1 class="text-xl font-bold"> {{ $product->name }} </h1>
-                <div class="flex">
-                    <p> Marca: <a class="underline capitalize hover:text-pantone-393" href=""> {{ $product->brand->name }}</a></p>
-                    <p class="mx-6"> {{ round($product->reviews->avg('rating'), 2) }} <i class="fas fa-star text-sm text-yellow-400"></i> </p>
-                    <a class="text-pantone-393 hover:text-pantone-1255 underline"> {{ $product->reviews->count() }} reseñas </a>
+            <div class="md:col-span-2">
+                <div class="flex justify-end items-center">
+                    <a href="" class="hover:bg-pantone-1255 flex items-center px-1">
+                        <p class="mx-0 flex items-center"> {{ round($product->reviews->avg('rating'), 2) }} <i class="ml-1 fas fa-star text-xs text-yellow-400"></i> <i class="fas fa-star text-xs text-yellow-400"></i> <i class="fas fa-star text-xs text-yellow-400"></i> <i class="fas fa-star text-xs text-yellow-400"></i> <i class="fas fa-star text-xs text-yellow-400"></i>
+                            <p class="ml-3 text-pantone-393 hover:text-pantone-1255 underline"> {{ $product->reviews->count() }} </p>
+                        </p>
+                    </a>
                 </div>
 
-                <p class="text-2xl font-semibold my-4"> COP {{ $product->price }} </p>
+                <p> Marca: <a class="capitalize"> {{ $product->brand->name }}</a> </p>
+                <h1 class="text-2xl font-bold uppercase"> {{ $product->name }} </h1>
+
+                <p class="text-xl font-bold my-4"> $ {{ number_format($product->price, 2, ',', '.') }} </p>
 
                 <div class="bg-white rounded-lg shadow-lg mb-6">
                     <div class="p-4 flex items-center">
@@ -150,8 +171,7 @@
         <script>
             $(document).ready(function() {
                 $('.flexslider').flexslider({
-                    animation: "slide",
-                    controlNav: "thumbnails"
+                    animation: "slide", 
                 });
             });
         </script>

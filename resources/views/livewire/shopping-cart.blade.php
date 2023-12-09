@@ -1,4 +1,4 @@
-<div class="container py-8">
+<div class="containerprop py-8">
     <x-table-responsive>
         <div class="px-6 py-4 bg-white">
             <h1 class="text-lg font-semibold text-gray-700">CARRO DE COMPRAS</h1>

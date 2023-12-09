@@ -13,7 +13,7 @@ class Search extends Component
     {
         if($this->search) {
             $products = Product::where('name', 'LIKE', '%' . $this->search . '%')
-                    ->where('status', 2)->take(8)->get();
+                    ->where('status', 2)->take(5)->get();
 
         } else {
             $products = [];
@@ -26,5 +26,9 @@ class Search extends Component
         }
 
         return view('livewire.search', compact('products'));
+    }
+
+    public function clear() {
+        $this->reset('search','open');
     }
 }

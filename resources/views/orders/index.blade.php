@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="container py-12">
+    <div class="containerprop py-12">
         <section class="grid lg:grid-cols-5 gap-6 text-white">
             <a href="{{ route('orders.index') . "?status=PENDING" }}" class=" bg-pink-500 bg-opacity-75 rounded-lg px-12 pt-8 pb-4">
                 <p class="text-center text-2xl">
