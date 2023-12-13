@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\News;
 use App\Models\Order;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,7 @@ class WelcomeController extends Controller
             }
         }
         $categories = Category::all();
-        return view('welcome',compact('categories'));
+        $images = News::all();
+        return view('welcome',compact('categories','images'));
     }
 }

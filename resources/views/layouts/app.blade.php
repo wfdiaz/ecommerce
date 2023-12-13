@@ -22,6 +22,8 @@
         {{-- FlexSlider --}}
         <link rel="stylesheet" href="{{ asset('vendor/FlexSlider/flexslider.css') }}" type="text/css">
 
+        @stack('stylesheet')
+        
         @livewireStyles
 
         <!-- Scripts -->

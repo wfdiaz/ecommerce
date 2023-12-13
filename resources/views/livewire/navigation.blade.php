@@ -116,10 +116,12 @@
     
             <a href="/" class="flex-none mx-4 pb-3" x-on:mouseover="openc = null">
                 <div class="block md:hidden absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <x-jet-application-mark class="block h-9 w-auto" />
+                    {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
+                    <img class="block h-16 w-auto" src="{{ asset('img/logo.JPG') }}" alt="">
                 </div>
                 <div class="hidden md:block ">
-                    <x-jet-application-mark class="block h-10 w-auto" />
+                    {{-- <x-jet-application-mark class="block h-10 w-auto" /> --}}
+                    <img class="block h-16 w-auto" src="{{ asset('img/logo.JPG') }}" alt="">
                 </div>
             </a>
     

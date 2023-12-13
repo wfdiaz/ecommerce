@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Http;
 class OrderController extends Controller
 {
     public function payment(Order $order) {
+
         $this->authorize('author', $order);
         $items = json_decode($order->content);
         $envio = json_decode($order->envio);
+        // dd( $items);
 
         return view('orders.payment', compact('order', 'items', 'envio'));
     }
