@@ -2,5 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 @import 'containerprop.css';
+@import 'containerlittle.css';
 @import 'nav.css';
 @import 'form.css';

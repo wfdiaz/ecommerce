@@ -36,9 +36,9 @@
                 <x-jet-dropdown-link class="px-6" > Seguimiento de ordenes </x-jet-dropdown-link>
 
                 @auth
-                    @role('admin')
+                    {{-- @role('admin') --}}
                         <x-jet-dropdown-link class="px-6" href="{{ route('admin.index') }}"> Administrador </x-jet-dropdown-link>
-                    @endrole
+                    {{-- @endrole --}}
 
                     <a class="cursor-pointer px-6 block py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
                         Cerrar sesión

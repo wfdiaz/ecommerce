@@ -15,45 +15,41 @@
     @push('script')
         <script>
             Livewire.on('glid', function($id){
-                new Glider(document.querySelector('.glider-' + $id), {
-                    slidesToShow: 1,
-                    slidesToScroll: 1,
-                    draggable: true,
-                    dots: '.glider-' + $id + '~.dots',
-                    arrows: {
-                        prev: '.glider-' + $id + '~.glider-prev',
-                        next: '.glider-' + $id + '~.glider-next'
+                new Swiper(document.querySelector('.swiper-' + $id), {
+                    slidesPerView: 2.5,
+                    spaceBetween: 3,
+                    navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                     },
-                    responsive: [
-                        {
-                            breakpoint: 640,
-                            settings: {
-                                slidesToShow: 2.5,
-                                slidesToScroll: 2,
-                            }
+                    pagination: {
+                        el: 'swiper-pagination',
+                        clickable: true, // Habilitar la paginación como cliclable
+                    },
+                    breakpoints: {
+                        576: {
+                            slidesPerView: 3.5,
+                            spaceBetween: 4,
                         },
-                        {
-                            breakpoint: 768,
-                            settings: {
-                                slidesToShow: 3.5,
-                                slidesToScroll: 3,
-                            }
+                        960: {
+                            slidesPerView: 4.5,
+                            spaceBetween: 5,
                         },
-                        {
-                            breakpoint: 1024,
-                            settings: {
-                                slidesToShow: 4.5,
-                                slidesToScroll: 4,
-                            }
+                        1100: {
+                            slidesPerView: 5.5,
+                            spaceBetween: 5,
                         },
-                        {
-                            breakpoint: 1280,
-                            settings: {
-                                slidesToShow: 5.5,
-                                slidesToScroll: 5,
-                            }
+                        1440: {
+                            slidesPerView: 6.5,
+                            spaceBetween: 10,
                         }
-                    ]
+                    },
+                    mousewheel: false,
+                    allowTouchMove: true,
+                    keyboard: true,
+                    autoplay: {
+                        delay: 6000, // Cambiar aquí el intervalo de cambio de imágenes (en milisegundos)
+                    },
                 });
             })
         </script>

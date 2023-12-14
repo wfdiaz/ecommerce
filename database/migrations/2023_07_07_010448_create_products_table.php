@@ -19,7 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name')->nullable();
             $table->string('slug')->nullable();
             $table->text('description')->nullable();
-            $table->float('price')->nullable();
+            $table->float('price', 11, 2)->nullable();
             $table->unsignedBigInteger('subcategory_id');
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');
 

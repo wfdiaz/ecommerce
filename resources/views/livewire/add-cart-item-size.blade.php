@@ -1,25 +1,22 @@
 <div x-data>
-    <div class="mb-6">
-        <p class="text-xl"> Talla: </p>
-
-        <select wire:model='size_id' class="form-control w-full">
-            <option value="" selected disabled> Seleccione una talla </option>
+    <div class="-mt-10 md:my-6">
+        <p class="text-xl mb-2"> Tallas disponibles: </p>
+        <div class="grid grid-cols-3 md:grid-cols-4 gap-0.5 md:gap-1">
             @foreach ($sizes as $sz)
-                <option value="{{ $sz->id }}"> {{ $sz->name }} </option>
+                <div class="cursor-pointer text-center px-3 py-3 border border-pantone-1255 text-black hover:bg-pantone-1245 hover:text-white" wire:click="$set('size_id',{{ $sz->id }})" :class="{'bg-pantone-1245 text-white': $wire.size_id == '{{ $sz->id }}' }">{{ $sz->name }} </div>
             @endforeach
-        </select>
+        </div>
     </div>
 
     @if ($this->size_id != '')
-        <div>
-            <p class="text-xl"> Color: </p>
+        <div class="mt-6 md:mt-0">
+            <p class="text-xl mb-2"> Colores disponibles: </p>
 
-            <select wire:model='color_id' class="form-control w-full">
-                <option value="" selected disabled> Seleccione un color </option>
+            <div class="grid grid-cols-3 md:grid-cols-4 gap-0.5 md:gap-1">
                 @foreach ($colors as $color)
-                    <option class="capitalize" value="{{ $color->id }}"> {{ __($color->name) }} </option>
+                    <div class="cursor-pointer text-center px-3 py-3 border border-pantone-1255 text-black hover:bg-pantone-1245 hover:text-white capitalize" wire:click="$set('color_id',{{ $color->id }})" :class="{'bg-pantone-1245 text-white': $wire.color_id == '{{ $color->id }}' }"> {{ __($color->name) }} </div>
                 @endforeach
-            </select>
+            </div>
 
             @if($this->color_id != '')
                 <p class="my-4"> 
@@ -37,7 +34,13 @@
                         x-bind:disabled="$wire.qty > $wire.quantity" wire:click='addItem' wire:loading.attr="disabled" wire:target='addItem'> Agregar al carrito de compras </x-button>
                     </div>
                 </div>
+            @else
+                <div class="block h-10">
+                </div>
             @endif
+        </div>
+    @else
+        <div class="block h-10">
         </div>
     @endif
 </div>
