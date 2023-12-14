@@ -1,5 +1,5 @@
-<x-app-layout>
-
+<div>
+    
     @php
         //SDK de Mercado pago
         require base_path('vendor/autoload.php');
@@ -34,6 +34,7 @@
             'failure' => "https://www.tu-sitio/failure",
             'pending' => "https://www.tu-sitio/pending"
         );
+        
         $preference->auto_return = "approved"; 
         // $preference->items = array($item);
         $preference->items = $products;
@@ -129,24 +130,30 @@
             </div>
         </div>
 
-    <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-    <script>
-        //Agrega credenciales de SDK
-        const mp = new MercadoPago("{{ config('services.mercadopago.key') }}",{
-            locate: 'es-AR'
-        });
+    @push('script')
+        
+   
+        <script src="https://sdk.mercadopago.com/js/v2"></script>
 
-        // Inicializa el checkout
-        mp.checkout({
-            preference:{
-                id: '{{ $preference->id }}'
-            },
-            render: {
-                container: '.cho-container',
-                label: 'Pagar',
-            }
-        });
-    </script>
+        <script>
+            //Agrega credenciales de SDK
+            const mp = new MercadoPago("{{ config('services.mercadopago.key') }}",{
+                locate: 'es-AR'
+            });
 
-</x-app-layout>
+            // Inicializa el checkout
+            mp.checkout({
+                preference:{
+                    id: '{{ $preference->id }}'
+                },
+                render: {
+                    container: '.cho-container',
+                    label: 'Pagar',
+                }
+            });
+        </script>
+
+    @endpush
+
+</div>

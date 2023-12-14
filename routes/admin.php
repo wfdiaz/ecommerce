@@ -7,10 +7,12 @@ use App\Http\Livewire\Admin\BrandComponent;
 use App\Http\Livewire\Admin\CreateProduct;
 use App\Http\Livewire\Admin\DepartamentComponent;
 use App\Http\Livewire\Admin\EditProduct;
+use App\Http\Livewire\Admin\NewsComponent;
 use App\Http\Livewire\Admin\ShowCategory;
 use App\Http\Livewire\Admin\ShowDepartament;
 use App\Http\Livewire\Admin\ShowProducts;
 use App\Http\Livewire\Admin\UserComponent;
+use App\Models\News;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', ShowProducts::class)->name('admin.index');
@@ -36,3 +38,5 @@ Route::get('departaments', DepartamentComponent::class)->name('admin.departament
 Route::get('departaments/{department}', ShowDepartament::class)->name('admin.departaments.show');
 
 Route::get('users', UserComponent::class)->name('admin.users.index');
+
+Route::get('news', NewsComponent::class)->name('admin.news.index');
