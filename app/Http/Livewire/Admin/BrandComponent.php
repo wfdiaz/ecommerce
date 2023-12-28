@@ -35,7 +35,7 @@ class BrandComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.brand-component')->layout('layouts.admin');;
+        return view('livewire.admin.brand-component')->layout('layouts.admin');
     }
 
     public function getBrands(){

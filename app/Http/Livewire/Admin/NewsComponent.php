@@ -44,7 +44,7 @@ class NewsComponent extends Component
             'news' => News::orderBy($this->camp, $this->order)
             ->where('title', 'LIKE','%' .$this->search.'%')
             ->paginate(5),
-        ]);
+        ])->layout('layouts.admin');;
     }
 
     public function New()
