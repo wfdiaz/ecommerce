@@ -3,7 +3,7 @@
 namespace App\Observers;
 
 use App\Models\Product;
-use App\Models\Subcategory;
+use App\Models\SubCategory;
 
 class ProductObserver
 {

@@ -5,7 +5,7 @@ namespace App\Http\Livewire;
 use Livewire\Component;
 
 use App\Models\Category;
-use App\Models\Subcategory;
+use App\Models\SubCategory;
 
 class Navigation extends Component
 {

@@ -3,7 +3,7 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\Category;
-use App\Models\Subcategory;
+use App\Models\SubCategory;
 use Livewire\Component;
 use Illuminate\Support\Str;
 
