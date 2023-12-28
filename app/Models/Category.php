@@ -13,7 +13,7 @@ class Category extends Model
 
     // relacion uno a muchos
     public function subcategories(){
-        return $this->hasMany(Subcategory::class);
+        return $this->hasMany(SubCategory::class);
     }
 
     // relacion muchos a muchos
@@ -22,7 +22,7 @@ class Category extends Model
     }
 
     public function products(){
-        return $this->hasManyThrough(Product::class, Subcategory::class);
+        return $this->hasManyThrough(Product::class, SubCategory::class);
     }
 
     public function getRouteKeyName() {
