@@ -33,19 +33,18 @@
             </div>
         </div>
 
-        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6 flex items-center">
+        <div class="bg-white rounded-lg shadow-lg px-6 py-4 mb-6 md:flex items-center">
             <p class="text-gray-700 uppercase"><span class="font-semibold">Número de orden:</span>
                 Orden-{{ $order->id }}</p>
                 @if ($order->status == "PENDING")
-
-                <x-button-enlace class="ml-auto bg-pantone-393 hover:bg-pantone-1245 active:bg-pantone-1245 focus:border-pantone-1245 focus:ring-pantone-393" href="{{route('orders.payment', $order)}}">
-                    Ir a pagar
-                </x-button-enlace>
-            @endif
+                    <x-button-enlace class="ml-auto bg-pantone-393 hover:bg-pantone-1245 active:bg-pantone-1245 focus:border-pantone-1245 focus:ring-pantone-393 text-center" href="{{route('orders.payment', $order)}}">
+                        Ir a pagar
+                    </x-button-enlace>
+                @endif
         </div>
 
         <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-            <div class="grid grid-cols-2 gap-6 text-gray-700">
+            <div class="grid md:grid-cols-2 gap-6 text-gray-700">
                 <div>
                     <p class="text-lg font-semibold uppercase">Envío</p>
 

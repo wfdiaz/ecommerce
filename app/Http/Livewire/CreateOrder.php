@@ -48,7 +48,8 @@ class CreateOrder extends Component
         $order->phone = $this->phone;
         $order->envio_type = $this->envio_type;
         $order->shipping_cost = $this->shipping_cost;
-        $order->total = floatval(str_replace(',','',Cart::subtotal())) + $this->shipping_cost;
+        $order->total = Cart::subtotalFloat() + $this->shipping_cost;
+        $order->discount = Cart::discountFloat();
         $order->content = Cart::content();
 
         if ($this->envio_type == 2) {

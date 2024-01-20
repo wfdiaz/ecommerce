@@ -124,6 +124,18 @@
                     <x-jet-input wire:model="product.price" type="number" class="w-full" step="1000" />
                     <x-jet-input-error for="product.price" />
                 </div>
+
+                <div>
+                    <x-jet-label value="Descuento" />
+                    <x-jet-input wire:model="product.discount" type="number" class="w-full" step="10" min="1" max="100" />
+                    <x-jet-input-error for="product.discount" />
+                </div>
+
+                <div>
+                    <x-jet-label value="Fin del descuento" />
+                    <x-jet-input wire:model="product.discount_date" type="date" class="w-full"  />
+                    <x-jet-input-error for="product.discount_date" />
+                </div>
             </div>
 
             @if ($this->subcategory)

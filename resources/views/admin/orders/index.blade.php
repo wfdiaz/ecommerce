@@ -46,7 +46,7 @@
         @if ($orders->count())
             
         
-            <section class="bg-white shadow-lg rounded-lg px-12 py-8 mt-12 text-gray-700">
+            <section class="bg-white shadow-lg rounded-lg px-6 md:px-12 py-8 mt-12 text-gray-700">
                 <h1 class="text-2xl mb-4">Pedidos recientes</h1>
 
                 <ul>
@@ -89,7 +89,7 @@
                                     <br>
 
                                     <span class="text-sm">
-                                        ${{$order->total}} 
+                                        $ {{number_format($order->total,2)}} 
                                     </span>
                                 </div>
 

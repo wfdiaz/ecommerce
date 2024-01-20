@@ -29,12 +29,19 @@
             </div>
 
             <div class="col-span-6 sm:col-span-4">
-                <x-jet-label>
-                    Ícono
-                </x-jet-label>
+                <div class="flex justify-center">
+                    <div class="mr-auto">
+                        <x-jet-label> Descuento % </x-jet-label>
+                        <x-jet-input wire:model="createForm.discount" type="number" class="mt-1" step='10' max='90' />
+                        <x-jet-input-error for="createForm.discount" />
+                    </div>
 
-                <x-jet-input wire:model.defer="createForm.icon" type="text" class="w-full mt-1" />
-                <x-jet-input-error for="createForm.icon" />
+                    <div class="ml-auto">
+                        <x-jet-label> Fin del descuento </x-jet-label>
+                        <x-jet-input wire:model="createForm.discount_date" type="date" class="w-full mt-1" />
+                        <x-jet-input-error for="createForm.discount_date" />
+                    </div>
+                </div>
             </div>
 
             <div class="col-span-6 sm:col-span-4">
@@ -104,10 +111,6 @@
                     @foreach ($categories as $category)
                         <tr>
                             <td class="py-2">
-                                <span class="inline-block w-8 text-center mr-2">
-                                    {!!$category->icon!!}
-                                </span>
-
                                 <a href="{{route('admin.categories.show', $category)}}" class="uppercase underline hover:text-blue-600">
                                     {{$category->name}}
                                 </a>
@@ -163,13 +166,20 @@
                     <x-jet-input-error for="editForm.slug" />
                 </div>
 
-                <div>
-                    <x-jet-label>
-                        Ícono
-                    </x-jet-label>
-
-                    <x-jet-input wire:model.defer="editForm.icon" type="text" class="w-full mt-1" />
-                    <x-jet-input-error for="editForm.icon" />
+                <div class="col-span-6 sm:col-span-4">
+                    <div class="flex justify-center">
+                        <div class="mr-auto">
+                            <x-jet-label> Descuento % </x-jet-label>
+                            <x-jet-input wire:model="editForm.discount" type="number" class="mt-1" step='10' max='90' />
+                            <x-jet-input-error for="editForm.discount" />
+                        </div>
+    
+                        <div class="ml-auto">
+                            <x-jet-label> Fin del descuento </x-jet-label>
+                            <x-jet-input wire:model="editForm.discount_date" type="date" class="w-full mt-1" />
+                            <x-jet-input-error for="editForm.discount_date" />
+                        </div>
+                    </div>
                 </div>
 
                 <div>

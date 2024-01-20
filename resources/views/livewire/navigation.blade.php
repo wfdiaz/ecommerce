@@ -13,7 +13,7 @@
         <div class="bg-white flex items-center h-14 border-b border-pantone-1245">
             <a href="/" class="flex-1 mx-4">
                 <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <x-jet-application-mark class="block h-9 w-auto"/>
+                    <x-application-logo/>
                 </div>
             </a>
             <a x-on:click="close()" class="mx-4 cursor-pointer">
@@ -36,9 +36,9 @@
                 <x-jet-dropdown-link class="px-6" > Seguimiento de ordenes </x-jet-dropdown-link>
 
                 @auth
-                    {{-- @role('admin') --}}
+                    @role('admin')
                         <x-jet-dropdown-link class="px-6" href="{{ route('admin.index') }}"> Administrador </x-jet-dropdown-link>
-                    {{-- @endrole --}}
+                    @endrole
 
                     <a class="cursor-pointer px-6 block py-2 text-sm leading-5 text-gray-700 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 transition" onclick="event.preventDefault(); document.getElementById('logout-form').submit()">
                         Cerrar sesión
@@ -67,7 +67,7 @@
         <div class="bg-white flex items-center h-14 border-b border-pantone-1245">
             <a href="/" class="flex-1 mx-4">
                 <div class="absolute left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    <x-jet-application-mark class="block h-9 w-auto" />
+                    <x-application-logo/>
                 </div>
             </a>
             <a x-on:click="closesearch()" class="mx-4 cursor-pointer">
@@ -116,12 +116,10 @@
     
             <a href="/" class="flex-none mx-4 pb-3" x-on:mouseover="openc = null">
                 <div class="block md:hidden absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                    {{-- <x-jet-application-mark class="block h-9 w-auto" /> --}}
-                    <img class="block h-16 w-auto" src="{{ asset('img/logo.JPG') }}" alt="">
+                    <x-application-logo/>
                 </div>
                 <div class="hidden md:block ">
-                    {{-- <x-jet-application-mark class="block h-10 w-auto" /> --}}
-                    <img class="block h-16 w-auto" src="{{ asset('img/logo.JPG') }}" alt="">
+                    <x-application-logo/>
                 </div>
             </a>
     

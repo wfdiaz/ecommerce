@@ -71,7 +71,7 @@
         <div>
             <x-jet-button class="mt-6 mb-4" wire:click="createOrder" wire:loading.attr='disabled' wire:target='createOrder'> Continuar con la compra </x-jet-button>
             <hr>
-            <p class="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis libero doloremque atque eos dolore ex totam iusto enim temporibus dolor, quod voluptatem incidunt beatae dicta animi rerum? Nihil, libero culpa. <a class="font-semibold text-pantone-1245 "> Politicas y privacidad.</a></p>
+         .   {{-- <p class="text-sm mt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis libero doloremque atque eos dolore ex totam iusto enim temporibus dolor, quod voluptatem incidunt beatae dicta animi rerum? Nihil, libero culpa. <a class="font-semibold text-pantone-1245 "> Politicas y privacidad.</a></p> --}}
         </div>
     </div>
 
@@ -110,7 +110,8 @@
             <hr class="mb-3 mt-4">
 
             <div>
-                <p class="flex justify-between items-center"> Subtotal <span class="font-semibold"> {{ number_format(str_replace(',','',Cart::subtotal()), 0, ',', '.' ) }} COP </span> </p>
+                <p class="flex justify-between items-center"> Subtotal <span class="font-semibold"> {{ number_format(Cart::priceTotalFloat(), 0, ',', '.' ) }} COP </span> </p>
+                <p class="flex justify-between items-center"> Descuento <span class="font-semibold"> {{ number_format(Cart::discountFloat(), 0, ',', '.' ) }} COP </span> </p>
 
                 <p class="flex justify-between items-center"> Envio <span class="font-semibold"> 
                 @if ($envio_type == 1 || 0 == $shipping_cost)
@@ -122,7 +123,7 @@
 
                 <hr class="mb-3 mt-4">
 
-                <p class="flex justify-between items-center font-semibold"> <span class="text-lg"> TOTAL </span> {{ number_format(floatval(str_replace(',','',Cart::subtotal())) + $this->shipping_cost, 0, ',', '.' ) }} COP </p>
+                <p class="flex justify-between items-center font-semibold"> <span class="text-lg"> TOTAL </span> {{ number_format(Cart::subtotalFloat() + $this->shipping_cost, 0, ',', '.' ) }} COP </p>
             </div>
         </div>
     </div>

@@ -75,7 +75,7 @@
     </div>
 
     <div class="bg-white rounded-lg shadow-lg p-6 mb-6">
-        <div class="grid grid-cols-2 gap-6 text-gray-700">
+        <div class="grid md:grid-cols-2 gap-6 text-gray-700">
             <div>
                 <p class="text-lg font-semibold uppercase">Envío</p>
 

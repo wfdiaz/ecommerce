@@ -1,5 +1,5 @@
 <x-app-layout>
-    <div class="containerprop py-8">
+    <div class="containerprop py-8" x-data>
         <div class="grid md:grid-cols-5 gap-4 md:gap-6">
             <div class="block md:hidden">
                 <div class="flex justify-end items-center">
@@ -13,7 +13,12 @@
                 <p> Marca: <a class="capitalize"> {{ $product->brand->name }}</a> </p>
                 <h1 class="text-2xl font-bold uppercase"> {{ $product->name }} </h1>
 
-                <p class="text-lg font-bold my-2"> ${{ number_format($product->price, 2, ',', '.') }} </p>
+                <div class="flex ">
+                    <p class="text-lg font-bold my-2" :class="{'line-through text-red-500': '{{ $product->priceDiscount() }}' != false} "> ${{ number_format($product->price, 2, ',', '.') }} </p>
+                    @if ($product->priceDiscount())
+                        <p class="text-lg font-bold my-2 ml-4"> ${{ number_format($product->priceDiscount(), 2, ',', '.') }} </p>
+                    @endif
+                </div>
             </div>
 
             <div class="md:col-span-3">
@@ -145,8 +150,13 @@
     
                     <p> Marca: <a class="capitalize"> {{ $product->brand->name }}</a> </p>
                     <h1 class="text-2xl font-bold uppercase"> {{ $product->name }} </h1>
-    
-                    <p class="text-lg font-bold my-2"> ${{ number_format($product->price, 2, ',', '.') }} </p>
+                    <div class="flex ">
+                        <p class="text-lg font-bold my-2" :class="{'line-through text-red-500': '{{ $product->priceDiscount() }}' != false} "> ${{ number_format($product->price, 2, ',', '.') }} </p>
+                        @if ($product->priceDiscount())
+                            <p class="text-lg font-bold my-2 ml-4"> ${{ number_format($product->priceDiscount(), 2, ',', '.') }} </p>
+                        @endif
+                    </div>
+
                 </div>
 
                 {{-- <div class="bg-white rounded-lg shadow-lg mb-6">

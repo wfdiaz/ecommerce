@@ -28,6 +28,8 @@ class EditProduct extends Component
         'product.brand_id' => 'required',
         'product.price' => 'required',
         'product.quantity' => '',
+        'product.discount' => '',
+        'product.discount_date' => '',
     ];
 
     protected $listeners = ['refreshProduct', 'delete'];
@@ -84,6 +86,11 @@ class EditProduct extends Component
             if (!$this->subcategory->color && !$this->subcategory->size) {
                 $rules['product.quantity'] = 'required|numeric';
             }
+        }
+
+        if($this->product->discount) {
+            $rules['product.discount'] = 'required|numeric|min:1|max:90';
+            $rules['product.discount_date'] = 'required|date|after:today';
         }
 
         $this->validate($rules);

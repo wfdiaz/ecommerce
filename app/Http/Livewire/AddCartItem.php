@@ -34,7 +34,7 @@ class AddCartItem extends Component
 
     public function addItem()
     {
-        Cart::add([
+       $cart = Cart::add([
             'id' => $this->product->id,
             'name' => $this->product->name,
             'qty' => $this->qty,
@@ -42,6 +42,10 @@ class AddCartItem extends Component
             'weight' => 500,
             'options' => $this->options
         ]);
+
+        if($this->product->getDiscount()) {
+            Cart::setDiscount($cart->rowId,$this->product->getDiscount());
+        }
 
         $this->quantity = qty_available($this->product->id);
         $this->reset('qty');

@@ -20,8 +20,9 @@ class CreateCategory extends Component
     public $createForm = [
         'name' => null,
         'slug' => null,
-        'icon' => null,
         'image' => null,
+        'discount' => null,
+        'discount_date' => null,
         'brands' => [],
     ];
 
@@ -29,8 +30,9 @@ class CreateCategory extends Component
         'open' => false,
         'name' => null,
         'slug' => null,
-        'icon' => null,
         'image' => null,
+        'discount' => null,
+        'discount_date' => null,
         'brands' => [],
     ];
 
@@ -39,22 +41,25 @@ class CreateCategory extends Component
     protected $rules = [
         'createForm.name' => 'required',
         'createForm.slug' => 'required|unique:categories,slug',
-        'createForm.icon' => 'required',
         'createForm.image' => 'required|image|max:1024',
+        'createForm.discount' => '',
+        'createForm.discount_date' => '',
         'createForm.brands' => 'required',
     ];
 
     protected $validationAttributes = [
         'createForm.name' => 'nombre',
         'createForm.slug' => 'slug',
-        'createForm.icon' => 'ícono',
         'createForm.image' => 'imagen',
         'createForm.brands' => 'marcas',
+        'createForm.discount' => 'descuento',
+        'createForm.discount_date' => 'fecha fin descuento',
         'editForm.name' => 'nombre',
         'editForm.slug' => 'slug',
-        'editForm.icon' => 'ícono',
         'editImage' => 'imagen',
-        'editForm.brands' => 'marcas'
+        'editForm.brands' => 'marcas',
+        'editForm.discount' => 'descuento',
+        'editForm.discount_date' => 'fecha fin descuento'
     ];
 
     public function mount(){
@@ -85,15 +90,22 @@ class CreateCategory extends Component
     }
 
     public function save(){
-        $this->validate();
+        $rules = $this->rules;
+        if ($this->createForm['discount']) {
+            $rules['createForm.discount'] = 'required|numeric|min:1|max:90';
+            $rules['createForm.discount_date'] = 'required|date|after:today';
+        }
+        
+        $this->validate($rules);
 
         $image = $this->createForm['image']->store('public/categories');
 
         $category = Category::create([
             'name' => $this->createForm['name'],
             'slug' => $this->createForm['slug'],
-            'icon' => $this->createForm['icon'],
-            'image' => $image
+            'image' => $image,
+            'discount' => $this->createForm['discount'],
+            'discount_date' => $this->createForm['discount_date'],
         ]);
 
         $category->brands()->attach($this->createForm['brands']);
@@ -115,7 +127,8 @@ class CreateCategory extends Component
         $this->editForm['open'] = true;
         $this->editForm['name'] = $category->name;
         $this->editForm['slug'] = $category->slug;
-        $this->editForm['icon'] = $category->icon;
+        $this->editForm['discount'] = $category->discount;
+        $this->editForm['discount_date'] = $category->discount_date;
         $this->editForm['image'] = $category->image;
         $this->editForm['brands'] = $category->brands->pluck('id');
     }
@@ -125,10 +138,14 @@ class CreateCategory extends Component
         $rules = [
             'editForm.name' => 'required',
             'editForm.slug' => 'required|unique:categories,slug,' . $this->category->id,
-            'editForm.icon' => 'required',
             'editForm.brands' => 'required',
+            'editForm.discount' => '',
+            'editForm.discount_date' => '',
         ];
-
+        if ($this->editForm['discount']) {
+            $rules['editForm.discount'] = 'required|numeric|min:1|max:90';
+            $rules['editForm.discount_date'] = 'required|date|after:today';
+        }
         if ($this->editImage) {
             $rules['editImage'] = 'required|image|max:1024';
         }

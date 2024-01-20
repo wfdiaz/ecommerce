@@ -47,6 +47,7 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+
     public function subcategory(){
         return $this->belongsTo(Subcategory::class);
     }
@@ -63,5 +64,23 @@ class Product extends Model
 
     public function getRouteKeyName() {
         return 'slug';
+    }
+
+    public function getDiscount() {
+        $category_discount = intval($this->subcategory->category->discount);
+        $product_discount = intval($this->attributes['discount']);
+        $max = max($category_discount, $product_discount);
+        return $max;
+    }
+
+    public function priceDiscount() {
+        $discount = $this->getDiscount();
+        if ($discount) {
+            $price = $this->attributes['price'] * (1 - ($discount/100));
+        } else {
+            $price = false;
+        }
+
+        return $price;
     }
 }

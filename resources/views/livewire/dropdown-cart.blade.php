@@ -1,5 +1,5 @@
 <div x-data="{opencart : false}"  x-on:mouseleave="opencart = false">
-    <span class="relative inline-block cursor-pointer"  x-on:mouseover="opencart = true">
+    <span class="relative inline-block cursor-pointer" x-on:mouseover="opencart = true">
         <a href="{{ route('cart') }}">
             <x-cart color="black" size='25'/>
         </a>
@@ -60,36 +60,38 @@
             @endif
         </x-slot>
     </x-jet-dropdown> --}}
-    <div x-show='opencart' class="absolute bg-white w-72 end-0 top-20">
-        <ul>
-            @forelse (Cart::content() as $item)
-                <li class="flex p-2 border-b border-black">
-                    <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}" alt="">
-                    <article class="flex-1">
-                        <h1 class="font-bold"> {{ $item->name }}</h1>
-                        <div class="flex">
-                            <p> Cantidad: {{ $item->qty }}</p>
-                            @isset($item->options['color'])
-                                <p class="ml-2"> - Color:&nbsp;
-                                    <p class="capitalize mr-2"> {{ __($item->options['color']) }} </p>
-                                </p>
-                            @endisset
+    @if (!Cart::count())
+        <div x-show='opencart' class="hidden md:block absolute bg-white w-72 end-0 top-20">
+            <ul>
+                @forelse (Cart::content() as $item)
+                    {{-- <li class="flex p-2 border-b border-black">
+                        <img class="h-15 w-20 object-cover mr-4" src="{{ $item->options->image }}" alt="">
+                        <article class="flex-1">
+                            <h1 class="font-bold"> {{ $item->name }}</h1>
+                            <div class="flex">
+                                <p> Cantidad: {{ $item->qty }}</p>
+                                @isset($item->options['color'])
+                                    <p class="ml-2"> - Color:&nbsp;
+                                        <p class="capitalize mr-2"> {{ __($item->options['color']) }} </p>
+                                    </p>
+                                @endisset
 
-                            @isset($item->options['size'])
-                                <p> {{ $item->options['size'] }} </p>
-                            @endisset
-                        </div>
+                                @isset($item->options['size'])
+                                    <p> {{ $item->options['size'] }} </p>
+                                @endisset
+                            </div>
 
-                        <p> COP $ {{ $item->price }}</p>
-                    </article>
-                </li>
-            @empty
-                <li class="py-3 px-4">
-                    <p class="text-center text-xl font-bold">
-                        Tu carrito está vacio
-                    </p>
-                </li>
-            @endforelse
-        </ul>
-    </div>
+                            <p> COP $ {{ $item->price }}</p>
+                        </article>
+                    </li> --}}
+                @empty
+                    <li class="py-3 px-4">
+                        <p class="text-center text-xl font-bold">
+                            Tu carrito está vacio
+                        </p>
+                    </li>
+                @endforelse
+            </ul>
+        </div>
+    @endif
 </div>
