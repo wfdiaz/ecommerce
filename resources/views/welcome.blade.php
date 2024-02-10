@@ -11,7 +11,9 @@
                         <div class="swiper-slide duration-700 ease-linear inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="{{ $loop->first ? 'active' : ''}}">
                             <img class="object-cover w-full h-full"
                                 style="max-width: 100%; max-height: 500px;" 
-                                src="{{ asset(str_replace("public/", "", $image->ruta)) }}"
+                                {{-- {{ DD(asset('storage/storage/images/' . basename($image->ruta))) }} --}}
+                                src="{{ asset('storage/storage/images/' . basename($image->ruta)) }}"
+                                {{-- src="{{ asset(str_replace("public/", "public/storage/", $image->ruta)) }}" --}}
                                 alt="{{ $image->title }}"
                             />
                         </div>
@@ -35,6 +37,10 @@
                 @livewire('category-products',['category' => $category])
             </section>
         @endforeach
+    </div>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @livewire('footer')
     </div>
 
     @push('script')
