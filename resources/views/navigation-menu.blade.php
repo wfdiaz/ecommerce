@@ -32,9 +32,14 @@
                         Departamentos
                     </x-jet-nav-link>
 
+                    <x-jet-nav-link href="{{ route('admin.colors.index') }}" :active="request()->routeIs('admin.colors.*')">
+                        Colores
+                    </x-jet-nav-link>
+
                     <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
                         Usuarios
                     </x-jet-nav-link>
+
                     <x-jet-nav-link href="{{ route('admin.news.index') }}" :active="request()->routeIs('admin.news.*')">
                         Noticias
                     </x-jet-nav-link>
@@ -180,9 +185,14 @@
                 Departamentos
             </x-jet-nav-link>
 
+            <x-jet-nav-link href="{{ route('admin.colors.index') }}" :active="request()->routeIs('admin.colors.*')">
+                Colores
+            </x-jet-nav-link>
+
             <x-jet-nav-link href="{{ route('admin.users.index') }}" :active="request()->routeIs('admin.users.*')">
                 Usuarios
             </x-jet-nav-link>
+
             <x-jet-nav-link href="{{ route('admin.news.index') }}" :active="request()->routeIs('admin.news.*')">
                 Noticias
             </x-jet-nav-link>
