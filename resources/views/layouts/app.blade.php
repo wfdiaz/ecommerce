@@ -24,6 +24,8 @@
         {{-- FlexSlider --}}
         <link rel="stylesheet" href="{{ asset('vendor/FlexSlider/flexslider.css') }}" type="text/css">
 
+        <link rel="stylesheet" href="https://demos.creative-tim.com/notus-js/assets/vendor/@fortawesome/fontawesome-free/css/all.min.css">
+
         @stack('stylesheet')
         
         @livewireStyles

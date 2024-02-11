@@ -3,17 +3,21 @@
         <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
     @endpush
 
-    <div id="default-carousel" class="relative w-80 bg-white-200 rounded-md" data-carousel="{{ count($images) > 1 ? 'slide' : 'static' }}">
+    <div id="default-carousel" class="relative bg-white-200 rounded-md" data-carousel="{{ count($images) > 1 ? 'slide' : 'static' }}">
         <div class="mt-6 mx-60 swiper mySwiper">
             <div class="swiper-wrapper">
                 @foreach ($images as $image)
-                    <div class="swiper-slide duration-700 ease-linear inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="{{ $loop->first ? 'active' : ''}}">
-                        <img class="object-cover w-full h-full"
-                            style="max-width: 100%; max-height: 500px;" 
-                            src="{{ asset(str_replace("public/", "", $image->ruta)) }}"
-                            alt="{{ $image->title }}"
-                        />
-                    </div>
+                    @if ($image->active == "si")
+                        <div class="swiper-slide duration-700 ease-linear inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="{{ $loop->first ? 'active' : ''}}">
+                            <img class="object-cover w-full h-full"
+                                style="max-width: 100%; max-height: 500px;" 
+                                {{-- {{ DD(asset('storage/storage/images/' . basename($image->ruta))) }} --}}
+                                src="{{ asset('storage/storage/images/' . basename($image->ruta)) }}"
+                                {{-- src="{{ asset(str_replace("public/", "public/storage/", $image->ruta)) }}" --}}
+                                alt="{{ $image->title }}"
+                            />
+                        </div>
+                    @endif
                 @endforeach
             </div>
             <div class="swiper-button-next"></div>
@@ -33,6 +37,10 @@
                 @livewire('category-products',['category' => $category])
             </section>
         @endforeach
+    </div>
+
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        @livewire('footer')
     </div>
 
     @push('script')

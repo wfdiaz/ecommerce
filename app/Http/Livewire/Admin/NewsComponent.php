@@ -82,7 +82,7 @@ class NewsComponent extends Component
         if($this->bandera == true){
 
             $nombre = $this->ruta->getClientOriginalName();
-            $ruta = $this->ruta->storeAs('public/images', $nombre);
+            $ruta = $this->ruta->storeAs('public/storage/images', $nombre);
             // $ruta = $this->ruta->store('public/images');
             
             $new = new News;
@@ -108,7 +108,7 @@ class NewsComponent extends Component
                 $nombre = $this->ruta->getClientOriginalName();
                 $rutaImagen = public_path('images/'. $nombre);
                 
-                $ruta = $this->ruta->storeAs('public/images', $nombre);
+                $ruta = $this->ruta->storeAs('public/storage/images', $nombre);
                 $new->ruta = $ruta;
             }
             // if(Storage::exists($new->ruta)){

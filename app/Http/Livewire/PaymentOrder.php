@@ -12,14 +12,15 @@ class PaymentOrder extends Component
     public function mount(Order $order){
         // dd($order);
         $this->order = $order;
+        // $this->envio = json_decode($this->order->envio);
     }
 
 
     public function render()
     {
         $items = json_decode($this->order->content);
-        // dd($items);
+        $envio = json_decode($this->order->envio);
 
-        return view('livewire.payment-order', compact('items'));
+        return view('livewire.payment-order', compact('items', 'envio'));
     }
 }
