@@ -115,11 +115,21 @@
             </a>
     
             <a href="/" class="flex-none mx-4 pb-3" x-on:mouseover="openc = null">
-                <div class="block md:hidden absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                {{-- <div class="block md:hidden absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
                     <x-application-logo/>
                 </div>
                 <div class="hidden md:block ">
                     <x-application-logo/>
+                </div> --}}
+                <div class="block md:hidden absolute top-7 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex items-center">
+                    <x-application-logo/>
+                    <!-- Agregar la imagen al lado del logo con un margen a la derecha -->
+                    <x-application-logo-col style="margin-left: 10px;"/>
+                </div>
+                <div class="hidden md:flex items-center">
+                    <x-application-logo/>
+                    <!-- Agregar la imagen al lado del logo con un margen a la derecha -->
+                    <x-application-logo-col style="margin-left: 10px;"/>
                 </div>
             </a>
     
