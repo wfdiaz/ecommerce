@@ -1,6 +1,16 @@
 <x-app-layout>
     @push('stylesheet')
-        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+        {{-- <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" /> --}}
+        {{-- <style>
+            .whatsapp-logo {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                max-width: 100px;  /* Establecer el ancho máximo del logo */
+                height: auto;      /* Mantener la proporción original de la imagen */
+            }
+        </style> --}}
     @endpush
 
     <div id="default-carousel" class="relative bg-white-200 rounded-md" data-carousel="{{ count($images) > 1 ? 'slide' : 'static' }}">
@@ -11,6 +21,7 @@
                         <div class="swiper-slide duration-700 ease-linear inset-0 transition-all transform translate-x-0 z-20" data-carousel-item="{{ $loop->first ? 'active' : ''}}">
                             <img class="object-cover w-full h-full"
                                 style="max-width: 100%; max-height: 500px;" 
+                        
                                 {{-- {{ DD(asset('storage/storage/images/' . basename($image->ruta))) }} --}}
                                 src="{{ asset('storage/storage/images/' . basename($image->ruta)) }}"
                                 {{-- src="{{ asset(str_replace("public/", "public/storage/", $image->ruta)) }}" --}}
@@ -42,6 +53,10 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         @livewire('footer')
     </div>
+
+    {{-- <a href="https://api.whatsapp.com/send?phone=3173873348" target="_blank" class="whatsapp-logo">
+        <img src="{{ asset('storage/images/whatsapp.png') }}" alt="WhatsApp">
+    </a> --}}
 
     @push('script')
      {{-- Noticias --}}

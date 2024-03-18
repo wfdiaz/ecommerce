@@ -43,6 +43,21 @@
 
         {{-- FlexSlider --}}
         <script src="{{ asset('vendor/FlexSlider/jquery.flexslider.js') }}"></script>
+        
+        <!-- Swiper -->
+        <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+        <style>
+            .whatsapp-logo {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                z-index: 1000;
+                max-width: 100px; /* Establecer el ancho máximo del logo */
+                height: auto; /* Mantener la proporción original de la imagen */
+            }
+        </style>
+
     </head>
 
     <body class="font-sans antialiased">
@@ -106,5 +121,11 @@
         </script>
 
         @stack('script')
+
+        <!-- WhatsApp Logo -->
+        <a href="https://api.whatsapp.com/send?phone=3173873348" target="_blank" class="whatsapp-logo">
+            <img src="{{ asset('storage/images/whatsapp.png') }}" alt="WhatsApp">
+        </a>
+        
     </body>
 </html>

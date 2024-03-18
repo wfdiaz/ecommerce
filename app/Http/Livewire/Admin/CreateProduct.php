@@ -20,7 +20,7 @@ class CreateProduct extends Component
         'category_id' => 'required',
         'subcategory_id' => 'required',
         'name' => 'required',
-        'slug' => 'required|unique:products',
+        'slug' => 'required',
         'description' => 'required',
         'brand_id' => 'required',
         'price' => 'required',
@@ -62,6 +62,16 @@ class CreateProduct extends Component
                 $rules['quantity'] = 'required';
             }
         }
+
+       
+        $slugCount = Product::where('slug', $this->slug)->count();
+
+        if ($slugCount > 0) {
+            $this->slug = $this->slug . $slugCount;
+        } else {
+            $this->slug = $this->slug;
+        }
+        
 
         $this->validate($rules);
 

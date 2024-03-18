@@ -1,4 +1,23 @@
 <x-app-layout>
+    @push('stylesheet')
+        <style>
+            .zoomable-image-container {
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+            }
+        
+            .zoomable-image-container img {
+                transition: transform 0.3s ease-in-out;
+            }
+        
+            .zoomable-image-container.zoomed img {
+                transform: scale(2); /* Puedes ajustar el valor de escala según tu preferencia */
+                cursor: zoom-out;
+            }
+        </style>
+    @endpush
+
     <div class="containerprop py-8" x-data>
         <div class="grid md:grid-cols-5 gap-4 md:gap-6">
             <div class="block md:hidden">
@@ -32,7 +51,7 @@
                     </ul>
                 </div>
 
-                <div class="hidden md:block">
+                {{-- <div class="hidden md:block">
                     <div class="grid grid-cols-2 gap-0.5" >
                         @foreach ($product->images as $key => $image)
                             @if ($product->images->count() % 2 == 0)
@@ -47,7 +66,18 @@
                             @endif
                         @endforeach
                     </div>
+                </div> --}}
+
+                <div class="hidden md:block">
+                <div class="grid grid-cols-2 gap-0.5">
+                    @foreach ($product->images as $key => $image)
+                        <div class="zoomable-image-container">
+                            <img class="object-cover w-full h-full" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" onclick="toggleZoom(this)" />
+                        </div>
+                    @endforeach
                 </div>
+            </div>
+
                 <div class="hidden md:block">
                     <div class="mt-2">
                         <h2 class="font-bold text-lg"> Descripción </h2>
@@ -291,6 +321,25 @@
                     animation: "slide", 
                 });
             });
+        </script>
+
+        <!-- Agrega este script JavaScript en tu archivo o en línea -->
+        <script>
+            function toggleZoom(element) {
+                var container = element.parentElement;
+
+                if (container.classList.contains('zoomed')) {
+                    container.classList.remove('zoomed');
+                } else {
+                    // Elimina la clase 'zoomed' de todas las imágenes
+                    document.querySelectorAll('.zoomable-image-container').forEach(function (container) {
+                        container.classList.remove('zoomed');
+                    });
+
+                    // Agrega la clase 'zoomed' a la imagen clicada
+                    container.classList.add('zoomed');
+                }
+            }
         </script>
     @endpush
 </x-app-layout>
