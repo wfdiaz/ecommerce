@@ -1,23 +1,13 @@
 <x-app-layout>
-    @push('stylesheet')
-        <style>
-            .zoomable-image-container {
-                position: relative;
-                overflow: hidden;
-                cursor: pointer;
-            }
-        
-            .zoomable-image-container img {
-                transition: transform 0.3s ease-in-out;
-            }
-        
-            .zoomable-image-container.zoomed img {
-                transform: scale(2); /* Puedes ajustar el valor de escala según tu preferencia */
-                cursor: zoom-out;
-            }
-        </style>
-    @endpush
-
+    <style>
+        .zoomed {
+            transform: scale(1.5);
+            transition: transform 0.3s ease;
+        }
+        .image-container {
+            overflow: hidden;
+        }
+    </style>
     <div class="containerprop py-8" x-data>
         <div class="grid md:grid-cols-5 gap-4 md:gap-6">
             <div class="block md:hidden">
@@ -71,8 +61,8 @@
                 <div class="hidden md:block">
                 <div class="grid grid-cols-2 gap-0.5">
                     @foreach ($product->images as $key => $image)
-                        <div class="zoomable-image-container">
-                            <img class="object-cover w-full h-full" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" onclick="toggleZoom(this)" />
+                        <div class="image-container overflow-hidden">
+                            <img class="object-cover w-full h-full zoomable-image" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" onclick="toggleZoom(this)" />
                         </div>
                     @endforeach
                 </div>
@@ -323,23 +313,36 @@
             });
         </script>
 
-        <!-- Agrega este script JavaScript en tu archivo o en línea -->
         <script>
-            function toggleZoom(element) {
-                var container = element.parentElement;
-
-                if (container.classList.contains('zoomed')) {
-                    container.classList.remove('zoomed');
-                } else {
-                    // Elimina la clase 'zoomed' de todas las imágenes
-                    document.querySelectorAll('.zoomable-image-container').forEach(function (container) {
-                        container.classList.remove('zoomed');
-                    });
-
-                    // Agrega la clase 'zoomed' a la imagen clicada
-                    container.classList.add('zoomed');
-                }
-            }
+            const imageContainers = document.querySelectorAll('.image-container');
+        
+            imageContainers.forEach(container => {
+                const image = container.querySelector('.zoomable-image');
+                let zoomEnabled = false;
+        
+                container.addEventListener('click', function() {
+                    if (!zoomEnabled) {
+                        zoomEnabled = true;
+                        image.classList.add('zoomed');
+                    } else {
+                        zoomEnabled = false;
+                        image.classList.remove('zoomed');
+                        image.style.transformOrigin = 'center center';
+                    }
+                });
+        
+                container.addEventListener('mousemove', function(event) {
+                    if (zoomEnabled) {
+                        const { left, top, width, height } = container.getBoundingClientRect();
+                        const { clientX, clientY } = event;
+        
+                        const offsetX = (clientX - left) / width;
+                        const offsetY = (clientY - top) / height;
+        
+                        image.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
+                    }
+                });
+            });
         </script>
     @endpush
 </x-app-layout>
