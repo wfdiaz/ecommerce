@@ -1,5 +1,11 @@
 <x-app-layout>
     <style>
+        .zoomable-image {
+            cursor: url("{{ asset('img/plus.png') }}"), auto;
+        }
+        .zoomable-image.zoomed {
+            cursor: url("{{ asset('img/minus.png') }}"), auto;
+        }
         .zoomed {
             transform: scale(1.5);
             transition: transform 0.3s ease;
@@ -315,11 +321,11 @@
 
         <script>
             const imageContainers = document.querySelectorAll('.image-container');
-        
+
             imageContainers.forEach(container => {
                 const image = container.querySelector('.zoomable-image');
                 let zoomEnabled = false;
-        
+
                 container.addEventListener('click', function() {
                     if (!zoomEnabled) {
                         zoomEnabled = true;
@@ -330,16 +336,24 @@
                         image.style.transformOrigin = 'center center';
                     }
                 });
-        
+
                 container.addEventListener('mousemove', function(event) {
                     if (zoomEnabled) {
                         const { left, top, width, height } = container.getBoundingClientRect();
                         const { clientX, clientY } = event;
-        
+
                         const offsetX = (clientX - left) / width;
                         const offsetY = (clientY - top) / height;
-        
+
                         image.style.transformOrigin = `${offsetX * 100}% ${offsetY * 100}%`;
+                    }
+                });
+
+                container.addEventListener('mouseleave', function() {
+                    if (zoomEnabled) {
+                        zoomEnabled = false;
+                        image.classList.remove('zoomed');
+                        image.style.transformOrigin = 'center center';
                     }
                 });
             });
