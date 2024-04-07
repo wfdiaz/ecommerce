@@ -80,7 +80,17 @@ class EditProduct extends Component
 
     public function save(){
         $rules = $this->rules;
+
+
+        $slugCount = Product::where('slug', $this->slug)->count();
+        if ($slugCount > 0) {
+            $this->slug = $this->slug . $slugCount;
+        } else {
+            $this->slug = $this->slug;
+        }
+
         $rules['slug'] = 'required|unique:products,slug,' . $this->product->id;
+
 
         if ($this->product->subcategory_id) {
             if (!$this->subcategory->color && !$this->subcategory->size) {

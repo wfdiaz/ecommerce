@@ -67,6 +67,13 @@ class ShowCategory extends Component
     }
 
     public function save(){
+
+        $slugCount = Subcategory::where('slug', $this->createForm['slug'])->count();
+        if ($slugCount > 0) {
+            $this->createForm['slug'] = $this->createForm['slug'] . $slugCount;
+        } else {
+            $this->createForm['slug'] = $this->createForm['slug'];
+        }
         $this->validate();
         
         $this->category->subcategories()->create($this->createForm);
@@ -91,13 +98,20 @@ class ShowCategory extends Component
     }
 
     public function update(){
+
+        $slugCount = Subcategory::where('slug', $this->editForm['slug'])->count();
+        if ($slugCount > 0) {
+            $this->editForm['slug'] = $this->editForm['slug'] . $slugCount;
+        } else {
+            $this->editForm['slug'] = $this->editForm['slug'];
+        }
         $this->validate([
             'editForm.name' => 'required',
             'editForm.slug' => 'required|unique:subcategories,slug,' . $this->subcategory->id,
             'editForm.color' => 'required',
             'editForm.size' => 'required',
         ]);
-
+  
         $this->subcategory->update($this->editForm);
 
         $this->getSubcategories();

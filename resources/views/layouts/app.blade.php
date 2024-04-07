@@ -82,7 +82,7 @@
         </div>
 
         @stack('modals')
-
+        
         @livewireScripts
 
         <script>
@@ -123,7 +123,7 @@
         @stack('script')
 
         <!-- WhatsApp Logo -->
-        <a href="https://api.whatsapp.com/send?phone=3223402024" target="_blank" class="whatsapp-logo">
+        <a href="https://api.whatsapp.com/send?phone=573223402024" target="_blank" class="whatsapp-logo">
             <img src="{{ asset('storage/images/whatsapp.png') }}" alt="WhatsApp">
         </a>
         

@@ -33,15 +33,31 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
+          
+
                 @if (Route::has('password.request'))
                     <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('Forgot your password?') }}
                     </a>
                 @endif
 
+                {{-- <x-jet-button class="ml-4">
+                    <a href="{{ route('register') }}" class='block text-xs'>Registrarse </a>
+                </x-jet-button> --}}
+
                 <x-jet-button class="ml-4">
                     {{ __('Log in') }}
                 </x-jet-button>
+
+            </div>
+
+            <div class="flex items-center justify-end mt-4">
+          
+
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 block text-center mx-auto" href="{{ route('register') }}">
+                    Para continuar con la compra por favor inicie sesión, si eres nuevo en nuestra página por favor regístrate aquí
+                </a>
+                
             </div>
         </form>
     </x-jet-authentication-card>

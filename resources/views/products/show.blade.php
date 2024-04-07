@@ -65,20 +65,20 @@
                 </div> --}}
 
                 <div class="hidden md:block">
-                <div class="grid grid-cols-2 gap-0.5">
-                    @foreach ($product->images as $key => $image)
-                        <div class="image-container overflow-hidden">
-                            <img class="object-cover w-full h-full zoomable-image" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" onclick="toggleZoom(this)" />
-                        </div>
-                    @endforeach
+                    <div class="grid grid-cols-2 gap-0.5">
+                        @foreach ($product->images as $key => $image)
+                            <div class="image-container overflow-hidden">
+                                <img class="object-cover w-full h-full zoomable-image" src="{{ Storage::url($image->url) }}" style="aspect-ratio: 1/1;" onclick="toggleZoom(this)" />
+                            </div>
+                        @endforeach
+                    </div>
                 </div>
-            </div>
 
                 <div class="hidden md:block">
-                    <div class="mt-2">
+                    {{-- <div class="mt-2">
                         <h2 class="font-bold text-lg"> Descripción </h2>
                         {!! $product->description !!}
-                    </div>
+                    </div> --}}
     
                     @can('review', $product)
                         <div class="mt-4" id="reviews">
@@ -206,6 +206,11 @@
                 @else
                     @livewire('add-cart-item', ['product' => $product])
                 @endif
+
+                <div class="mt-2">
+                    <h2 class="font-bold text-lg"> Descripción </h2>
+                    {!! $product->description !!}
+                </div>
             </div>
 
             <div class="block md:hidden">
