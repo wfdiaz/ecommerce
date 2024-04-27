@@ -28,7 +28,7 @@ class ColorsComponent extends Component
 
     public function render()
     {
-        return view('livewire.admin.colors-component')->layout('layouts.admin');;
+        return view('livewire.admin.colors-component')->layout('layouts.admin');
     }
 
     public function getColors(){

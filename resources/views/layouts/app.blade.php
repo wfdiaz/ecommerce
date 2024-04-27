@@ -76,9 +76,12 @@
             @endif
 
             <!-- Page Content -->
-            <main class="bg-white">
+            <main class="bg-white min-h-screen">
                 {{ $slot }}
             </main>
+            <footer>
+                @livewire('footer')
+            </footer>
         </div>
 
         @stack('modals')

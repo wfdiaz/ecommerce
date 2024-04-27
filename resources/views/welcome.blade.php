@@ -50,9 +50,7 @@
         @endforeach
     </div>
 
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        @livewire('footer')
-    </div>
+
 
     {{-- <a href="https://api.whatsapp.com/send?phone=3173873348" target="_blank" class="whatsapp-logo">
         <img src="{{ asset('storage/images/whatsapp.png') }}" alt="WhatsApp">

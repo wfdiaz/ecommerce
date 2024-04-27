@@ -9,6 +9,7 @@ use App\Http\Livewire\Admin\CreateProduct;
 use App\Http\Livewire\Admin\DepartamentComponent;
 use App\Http\Livewire\Admin\EditProduct;
 use App\Http\Livewire\Admin\NewsComponent;
+use App\Http\Livewire\Admin\QuestionsComponent;
 use App\Http\Livewire\Admin\ShowCategory;
 use App\Http\Livewire\Admin\ShowDepartament;
 use App\Http\Livewire\Admin\ShowProducts;
@@ -43,3 +44,5 @@ Route::get('users', UserComponent::class)->name('admin.users.index');
 Route::get('news', NewsComponent::class)->name('admin.news.index');
 
 Route::get('colors', ColorsComponent::class)->name('admin.colors.index');
+
+Route::get('frequently-questions', QuestionsComponent::class)->name('admin.questions.index');
