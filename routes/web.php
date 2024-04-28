@@ -6,6 +6,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\WelcomeController;
 use App\Http\Livewire\CreateOrder;
 use App\Http\Livewire\ShoppingCart;
@@ -28,6 +29,8 @@ Route::get('search', SearchController::class)->name('search');
 Route::get('categories/{category}', [CategoryController::class, 'show'])->name('categories.show');
 Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('cart', ShoppingCart::class)->name('cart');
+
+// Route::resource('users','UsersController')->names('users');
 
 Route::middleware(['auth'])->group(function() {
     
