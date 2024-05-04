@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Global;
+namespace App\Http\Livewire;
 
 use App\Models\FrequentlyQuestion;
 use Livewire\Component;

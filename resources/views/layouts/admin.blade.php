@@ -77,6 +77,22 @@
                     text: mensaje,
                 }) /*  */
             });
+
+            Livewire.on('alert', function(message) {
+                    Swal.fire(
+                        '',
+                        message,
+                        'success'
+                        )
+                });
+
+            Livewire.on('error', function(message) {
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: message,
+                    })
+                });
         </script>
     </body>
 </html>

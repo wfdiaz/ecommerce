@@ -48,7 +48,7 @@
                         @csrf
                     </form>
                 @else
-                    <x-jet-dropdown-link class="px-6" href="{{ route('register') }}"> Registrarse</x-jet-dropdown-link>
+                    <x-jet-dropdown-link class="px-6" href="{{ route('registro') }}"> Registrarse</x-jet-dropdown-link>
                 @endauth
             </ul>
         </div>
@@ -100,7 +100,7 @@
                         @csrf
                     </form>
                 @else
-                    <a href="{{ route('register') }}" class='block text-xs mx-2 leading-5 text-pantone-1255 transition'> Registrarse </a>
+                    <a href="{{ route('registro') }}" class='block text-xs mx-2 leading-5 text-pantone-1255 transition'> Registrarse </a>
                 @endauth
             </div>
         </div>

@@ -30,6 +30,7 @@ class EditProduct extends Component
         'product.quantity' => '',
         'product.discount' => '',
         'product.discount_date' => '',
+        'product.order' => '',
     ];
 
     protected $listeners = ['refreshProduct', 'delete'];
@@ -81,7 +82,7 @@ class EditProduct extends Component
     public function save(){
         $rules = $this->rules;
 
-
+         // Agregar regla de validación para el slug único, excepto para el producto actual
         $slugCount = Product::where('slug', $this->slug)->count();
         if ($slugCount > 0) {
             $this->slug = $this->slug . $slugCount;
@@ -91,23 +92,45 @@ class EditProduct extends Component
 
         $rules['slug'] = 'required|unique:products,slug,' . $this->product->id;
 
-
+         // Validar cantidad si la subcategoría no tiene color ni tamaño
         if ($this->product->subcategory_id) {
             if (!$this->subcategory->color && !$this->subcategory->size) {
                 $rules['product.quantity'] = 'required|numeric';
             }
         }
 
+        // Validar descuento si está presente
         if($this->product->discount) {
             $rules['product.discount'] = 'required|numeric|min:1|max:90';
             $rules['product.discount_date'] = 'required|date|after:today';
         }
 
         $this->validate($rules);
+
+        // Verificar si el nuevo orden ya está ocupado por otro producto
+        $productoConOrdenExistente = Product::where('order', $this->product->order)
+            ->where('id', '!=', $this->product->id)
+            ->first();
+
+            if ($productoConOrdenExistente) {
+                // Intercambiar los órdenes
+                $ordenTemporal = $productoConOrdenExistente->order;
+
+                $prod = Product::find($this->product->id);
+                $productoConOrdenExistente->order = $prod->order;  // Asignar al otro producto el orden actual del producto editado
+        
+                // Guardar los cambios del producto existente
+                $productoConOrdenExistente->save();
+        
+                // Asignar al producto editado el orden que tenía el otro producto
+                $this->product->order = $ordenTemporal;
+            }
     
         $this->product->slug = $this->slug;
 
         $this->product->save();
+
+        $this->emit('alert', 'Guardo correctamente');
 
         $this->emit('saved');
     }

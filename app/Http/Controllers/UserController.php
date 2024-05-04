@@ -18,27 +18,6 @@ class UserController extends Controller
      */
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create(array $input)
-    {
-        Validator::make($input, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => $this->passwordRules(),
-            'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['accepted', 'required'] : '',
-        ])->validate();
-
-        return User::create([
-            'name' => $input['name'],
-            'email' => $input['email'],
-            'password' => Hash::make($input['password']),
-        ]);
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -46,8 +25,38 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // Validar los datos del formulario
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'identificacion' => ['required', 'string', 'max:255'],
+            'telefono' => ['required', 'string', 'max:255'],
+            'direccion' => ['required', 'string', 'max:255'],
+        ]);
+    
+        // Crea un nuevo usuario con los datos del formulario
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'identificacion' => $request->identificacion,
+            'telefono' => $request->telefono,
+            'direccion' => $request->direccion,
+        ]);
+    
+        // Redirige a donde quieras después de que se haya creado el usuario
+        return redirect()->route('login')->with('success', 'Usuario registrado exitosamente!');
+        
     }
+    
+
+    public function registro(){
+
+        return view('login.register');
+    }
+
+
 
     /**
      * Display the specified resource.

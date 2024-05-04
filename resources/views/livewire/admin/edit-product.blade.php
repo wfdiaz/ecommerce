@@ -136,6 +136,11 @@
                     <x-jet-input wire:model="product.discount_date" type="date" class="w-full"  />
                     <x-jet-input-error for="product.discount_date" />
                 </div>
+
+                <div>
+                    <x-jet-label value="Orden" />
+                    <x-jet-input wire:model="product.order" type="text" class="w-full"  />
+                </div>
             </div>
 
             @if ($this->subcategory)

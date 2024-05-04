@@ -75,6 +75,9 @@ class CreateProduct extends Component
 
         $this->validate($rules);
 
+        // Obtener el último número de orden existente
+        $ultimoOrden = Product::max('order');
+
         $product = new Product();
         $product->name = $this->name;
         $product->slug = $this->slug;
@@ -87,6 +90,7 @@ class CreateProduct extends Component
                 $product->quantity = $this->quantity;
             }
         }
+        $product->order = $ultimoOrden + 1; // Asignar el siguiente número de orden
         $product->save();
 
         return redirect()->route('admin.products.edit', $product);

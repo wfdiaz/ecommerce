@@ -54,7 +54,7 @@
             <div class="flex items-center justify-end mt-4">
           
 
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 block text-center mx-auto" href="{{ route('register') }}">
+                <a class="underline text-sm text-gray-600 hover:text-gray-900 block text-center mx-auto" href="{{ route('registro') }}">
                     Para continuar con la compra por favor inicie sesión, si eres nuevo en nuestra página por favor regístrate aquí
                 </a>
                 

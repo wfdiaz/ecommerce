@@ -31,9 +31,10 @@ Route::get('categories/{category}', [CategoryController::class, 'show'])->name('
 Route::get('products/{product}', [ProductController::class, 'show'])->name('products.show');
 Route::get('cart', ShoppingCart::class)->name('cart');
 Route::get('frequently-asked-questions', FrequentlyQuestions::class)->name('global.frequently');
-Route::middleware(['auth'])->group(function () {
 
 // Route::resource('users','UsersController')->names('users');
+Route::get('registro', [UserController::class, 'registro'])->name('registro');
+Route::post('registro', [UserController::class, 'store'])->name('store');
 
 Route::middleware(['auth'])->group(function() {
     
