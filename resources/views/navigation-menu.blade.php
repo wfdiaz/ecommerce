@@ -43,6 +43,10 @@
                     <x-jet-nav-link href="{{ route('admin.news.index') }}" :active="request()->routeIs('admin.news.*')">
                         Noticias
                     </x-jet-nav-link>
+
+                    <x-jet-nav-link href="{{ route('admin.questions.index') }}" :active="request()->routeIs('admin.questions.*')">
+                        Preguntas
+                    </x-jet-nav-link>
                 </div>
             </div>
 
@@ -194,6 +198,10 @@
             </x-jet-nav-link>
 
             <x-jet-nav-link href="{{ route('admin.news.index') }}" :active="request()->routeIs('admin.news.*')">
+                Noticias
+            </x-jet-nav-link>
+
+            <x-jet-nav-link href="{{ route('admin.questions.index') }}" :active="request()->routeIs('admin.questions.*')">
                 Noticias
             </x-jet-nav-link>
         </div>
