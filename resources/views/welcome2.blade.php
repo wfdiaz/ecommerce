@@ -1,16 +1,18 @@
 <x-app-layout>
     @push('stylesheet')
         <style>
-            .category-banner {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 20px;
+             .category-banner {
+            display: flex;
+            flex-wrap: wrap; /* Permitir que las categorías se ajusten en varias filas */
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
             }
             .category-item {
                 text-align: center;
                 margin: 0 10px;
-                flex: 1;
+                flex: 1 1 calc(20% - 20px); /* Ocupa el 20% del ancho menos el margen */
+                box-sizing: border-box; /* Incluye padding y border en el tamaño total */
             }
             .category-item img {
                 width: 100%;
@@ -33,6 +35,37 @@
                 color: #E5C100;
                 text-decoration: underline;
             }
+
+            /* Media Queries para Responsividad */
+            @media (max-width: 1200px) {
+                .category-item {
+                    flex: 1 1 calc(33.33% - 20px); /* Ajusta a 3 categorías por fila en pantallas medianas */
+                }
+            }
+            @media (max-width: 768px) {
+                .category-item {
+                    flex: 1 1 calc(50% - 20px); /* Ajusta a 2 categorías por fila en pantallas pequeñas */
+                    margin-bottom: 20px; /* Añade espacio inferior para separarlos en columnas */
+                }
+                .category-banner {
+                    flex-direction: row; /* Mantiene las categorías en filas horizontales */
+                    align-items: center; /* Centra las categorías verticalmente */
+                }
+                .category-item img {
+                    height: 300px; /* Ajusta la altura de las imágenes en pantallas pequeñas */
+                }
+            }
+            @media (max-width: 480px) {
+                .category-item {
+                    flex: 1 1 100%; /* Toma todo el ancho disponible en pantallas muy pequeñas */
+                    margin-bottom: 20px; /* Añade espacio inferior para separarlos en columnas */
+                }
+                .category-banner {
+                    flex-direction: column; /* Colocar las categorías en una columna */
+                    align-items: center; /* Centrar las categorías verticalmente */
+                }
+            }
+
             .product-gallery {
                 display: flex;
                 gap: 20px;
