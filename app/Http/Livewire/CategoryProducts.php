@@ -15,6 +15,7 @@ class CategoryProducts extends Component
 
     public function loadProducts() {
         $this->products = $this->category->products()->where('status', 2)->orderBy('order', 'asc')->take('15')->get();
+
         $this->emit('glid', $this->category->id);
     }
 }

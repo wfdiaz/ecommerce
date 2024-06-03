@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\News;
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class WelcomeController extends Controller
@@ -19,7 +20,13 @@ class WelcomeController extends Controller
             }
         }
         $categories = Category::all();
+
         $images = News::all();
-        return view('welcome',compact('categories','images'));
+
+        $products = Product::where('discount', '>', 0)
+                    ->orWhereNotNull('discount')
+                    ->get();
+
+        return view('welcome2',compact('categories','images','products'));
     }
 }
